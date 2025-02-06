@@ -383,70 +383,35 @@ const jobDescriptions = {
 ];
 
 // Quiz questions for review quiz
-const reviewQuizQuestions = [
-    {
-        question: "What is CSS Flexbox primarily used for?",
-        options: [
-            "Creating animations",
-            "One-dimensional layouts",
-            "Database management",
-            "Server-side rendering"
-        ],
-        correct: 1
-    },
-    {
-        question: "Which property is used to change the stacking order in CSS?",
-        options: [
-            "stack-order",
-            "z-index",
-            "position",
-            "layer"
-        ],
-        correct: 1
-    },
-    {
-        question: "What does CSS Grid excel at?",
-        options: [
-            "One-dimensional layouts",
-            "Two-dimensional layouts",
-            "Text formatting",
-            "Color management"
-        ],
-        correct: 1
-    }
-];
-
-// Mock data for assessments
-const assessmentQuestions = {
-    mcq: [
-        {
-            question: "What is the primary purpose of React's useEffect hook?",
-            options: [
-                "To handle side effects in functional components",
-                "To create new components",
-                "To style components",
-                "To manage state"
-            ],
-            correct: 0
-        },
-        // Add more MCQ questions as needed
-    ],
-    written: [
-        {
-            question: "Explain the concept of microservices architecture and its advantages over monolithic architecture.",
-            type: "long-answer"
-        },
-        // Add more written questions as needed
-    ],
-    coding: [
-        {
-            question: "Write a function that finds the longest palindromic substring in a given string.",
-            type: "code",
-            testCases: [
-                { input: "babad", expected: "bab" },
-                { input: "cbbd", expected: "bb" }
-            ]
-        }
-        // Add more coding questions as needed
-    ]
-};
+// const reviewQuizQuestions = [
+//     {
+//         question: "What is CSS Flexbox primarily used for?",
+//         options: [
+//             "Creating animations",
+//             "One-dimensional layouts",
+//             "Database management",
+//             "Server-side rendering"
+//         ],
+//         correct: 1
+//     },
+//     {
+//         question: "Which property is used to change the stacking order in CSS?",
+//         options: [
+//             "stack-order",
+//             "z-index",
+//             "position",
+//             "layer"
+//         ],
+//         correct: 1
+//     },
+//     {
+//         question: "What does CSS Grid excel at?",
+//         options: [
+//             "One-dimensional layouts",
+//             "Two-dimensional layouts",
+//             "Text formatting",
+//             "Color management"
+//         ],
+//         correct: 1
+//     }
+// ];

@@ -1,8 +1,14 @@
 function initializeCurriculum() {
+    // Initialize Bootstrap dropdowns
+    const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
+    const dropdownList = [...dropdownElementList].map(dropdownToggleEl => 
+        new bootstrap.Dropdown(dropdownToggleEl)
+    );
+
     const curriculumIntro = document.querySelector('.curriculum-intro');
     const contentDisplay = document.getElementById('content-display');
-
-    // Show intro initially if content is empty
+    
+    // Show intro initially
     if (!contentDisplay.innerHTML.trim()) {
         curriculumIntro.style.display = 'block';
     }
@@ -12,24 +18,35 @@ function initializeCurriculum() {
         item.addEventListener("click", function(e) {
             e.preventDefault();
             const selectedBranch = this.getAttribute("data-branch");
-
-            // Update UI elements
-            document.getElementById("dropdown-branch-button").textContent = selectedBranch;
-            document.getElementById("second-dropdown-container").style.display = "block";
+            const branchButton = document.getElementById("dropdown-branch-button");
+            const secondDropdown = document.getElementById("second-dropdown-container");
+            const subjectButton = document.getElementById("dropdown-subject-button");
+            
+            // Update branch button text
+            branchButton.textContent = selectedBranch;
+            
+            // Show second dropdown
+            secondDropdown.style.display = "block";
+            
+            // Reset subject button text
+            subjectButton.textContent = "Indicate Job Preference";
+            
+            // Hide intro and show branch message
+            curriculumIntro.style.display = "none";
             document.getElementById("branch-selected-message").style.display = "block";
-            curriculumIntro.style.display = "none"; // Hide intro
-
-            // Reset role selection UI
-            document.getElementById("dropdown-subject-button").textContent = "Indicate Job Preference";
             document.getElementById("role-selected-message").style.display = "none";
-
-            // Hide all job roles initially
-            document.querySelectorAll(".job-roles").forEach(list => list.classList.add("d-none"));
-
+            
+            // Hide all job roles first
+            document.querySelectorAll(".job-roles").forEach(list => {
+                list.classList.add("d-none");
+            });
+            
             // Show relevant job roles
             const targetRoles = document.getElementById(`${selectedBranch}-roles`);
-            if (targetRoles) targetRoles.classList.remove("d-none");
-
+            if (targetRoles) {
+                targetRoles.classList.remove("d-none");
+            }
+            
             // Clear previous content
             contentDisplay.style.display = "none";
             contentDisplay.innerHTML = "";
@@ -41,12 +58,15 @@ function initializeCurriculum() {
         item.addEventListener("click", function(e) {
             e.preventDefault();
             const selectedRole = this.getAttribute("data-role");
-
-            // Update UI elements
+            const subjectButton = document.getElementById("dropdown-subject-button");
+            
+            // Update button text
+            subjectButton.textContent = selectedRole;
+            
+            // Update messages
             document.getElementById("branch-selected-message").style.display = "none";
             document.getElementById("role-selected-message").style.display = "block";
-            document.getElementById("dropdown-subject-button").textContent = selectedRole;
-
+            
             // Display role content
             const content = jobDescriptions[selectedRole];
             if (content) {
@@ -55,6 +75,12 @@ function initializeCurriculum() {
             } else {
                 contentDisplay.innerHTML = '<div class="alert alert-warning">Job role details not found.</div>';
                 contentDisplay.style.display = "block";
+            }
+
+            // Close the dropdown
+            const dropdown = bootstrap.Dropdown.getInstance(subjectButton);
+            if (dropdown) {
+                dropdown.hide();
             }
         });
     });

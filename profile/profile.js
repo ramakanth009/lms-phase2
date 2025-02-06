@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeCalendar();
         initializeAttendanceChart();
         initializeAttendanceCircles();
+        initializeSystemActivity(); // Add this line
     }
 
     // Add listener for navigation changes
@@ -65,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     initializeCalendar();
                     initializeAttendanceChart();
                     initializeAttendanceCircles();
+                    initializeSystemActivity(); // Add this line
                 }, 100);
             }
         });
@@ -651,5 +653,18 @@ function initializeAttendanceCircles() {
         setTimeout(() => {
             circle.style.strokeDashoffset = circumference * (1 - percentage);
         }, 100);
+    });
+}
+
+function initializeSystemActivity() {
+    // Add animation class to all progress bars
+    document.querySelectorAll('.progress-bar').forEach(bar => {
+        // Get the width from the style attribute
+        const width = bar.style.width;
+        // Remove and re-add the animation to trigger it
+        bar.style.animation = 'none';
+        bar.offsetHeight; // Trigger reflow
+        bar.style.animation = 'progressFill 1s ease-out forwards';
+        bar.style.setProperty('--progress-width', width);
     });
 }

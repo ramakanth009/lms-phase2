@@ -94,7 +94,7 @@
 }
 
 .info-section {
-  height: 100%;
+  height: 90%;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -907,4 +907,83 @@
     animation: progressFill 1s ease-out forwards;
 }
 
+/* Progress Bar Styles */
+.time-progress,
+.activity-progress {
+    background-color: #f0f0f0;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    transition: width 1s ease;
+    border-radius: 3px;
+}
+
+.time-progress .progress-bar {
+    background-color: #007bff;
+}
+
+.activity-progress .progress-bar.bg-success {
+    background-color: #28a745;
+}
+
+.activity-progress .progress-bar.bg-info {
+    background-color: #17a2b8;
+}
+
+.activity-progress .progress-bar.bg-warning {
+    background-color: #ffc107;
+}
+
+@keyframes progressFill {
+    from {
+        width: 0;
+    }
+    to {
+        width: var(--progress-width);
+    }
+}
+
+.progress-bar {
+    animation: progressFill 1s ease-out forwards;
+}
+
 /* ...existing code... */
+
+/* Address field specific styles */
+.address-group {
+  align-items: flex-start !important;
+}
+
+.address-group textarea {
+  border: none;
+  resize: none;
+  /* min-height: 60px; */
+  width: 60%;
+  /* padding: 8px; */
+  font-family: inherit;
+  line-height: 1.5;
+  color: #333;
+  background: transparent;
+}
+
+.address-group textarea:disabled {
+  background: transparent;
+  color: #333;
+}
+
+.address-group textarea.editing {
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+

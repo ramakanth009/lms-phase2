@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard</title>
+</head>
+<body>
+    <div class="analytics-dashboard">
+        <!-- Overview Section -->
+        <div class="overview-section mb-4">
+            <div class="row g-4">
+                <!-- Growth Score Card -->
+                <div class="col-md-3">
+                    <div class="metric-card growth">
+                        <div class="metric-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3>Growth Score</h3>
+                            <div class="metric-value">78.5</div>
+                            <div class="metric-change positive">
+                                <i class="fas fa-arrow-up"></i> +12.3%
+                            </div>
+                        </div>
+                        <div class="progress-ring">
+                            <svg>
+                                <circle class="progress-ring-circle" cx="40" cy="40" r="36"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning Velocity -->
+                <div class="col-md-3">
+                    <div class="metric-card velocity">
+                        <div class="metric-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3>Learning Velocity</h3>
+                            <div class="metric-value">92.1</div>
+                            <div class="metric-change positive">
+                                <i class="fas fa-arrow-up"></i> +8.7%
+                            </div>
+                        </div>
+                        <div class="progress-ring">
+                            <svg>
+                                <circle class="progress-ring-circle" cx="40" cy="40" r="36"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Coverage -->
+                <div class="col-md-3">
+                    <div class="metric-card coverage">
+                        <div class="metric-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3>Skill Coverage</h3>
+                            <div class="metric-value">85.4</div>
+                            <div class="metric-change positive">
+                                <i class="fas fa-arrow-up"></i> +5.2%
+                            </div>
+                        </div>
+                        <div class="progress-ring">
+                            <svg>
+                                <circle class="progress-ring-circle" cx="40" cy="40" r="36"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Index -->
+                <div class="col-md-3">
+                    <div class="metric-card performance">
+                        <div class="metric-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3>Performance Index</h3>
+                            <div class="metric-value">88.9</div>
+                            <div class="metric-change positive">
+                                <i class="fas fa-arrow-up"></i> +7.5%
+                            </div>
+                        </div>
+                        <div class="progress-ring">
+                            <svg>
+                                <circle class="progress-ring-circle" cx="40" cy="40" r="36"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Analytics Grid -->
+        <div class="row g-4">
+            <!-- Skill Progress Section -->
+            <div class="col-md-8">
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h2>Skill Progress Timeline</h2>
+                        <div class="header-actions">
+                            <select class="form-select form-select-sm">
+                                <option>Last 6 Months</option>
+                                <option>Last Year</option>
+                                <option>All Time</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="skillProgressChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning Path Progress -->
+            <div class="col-md-4">
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h2>Career Path Progress</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="career-goal">
+                            <div class="goal-header">
+                                <i class="fas fa-flag-checkered"></i>
+                                <span>Full Stack Developer</span>
+                            </div>
+                            <div class="goal-progress">
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 75%"></div>
+                                </div>
+                                <span>75% Complete</span>
+                            </div>
+                        </div>
+                        <div class="milestone-list">
+                            <div class="milestone completed">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Frontend Basics</span>
+                            </div>
+                            <div class="milestone completed">
+                                <i class="fas fa-check-circle"></i>
+                                <span>JavaScript Advanced</span>
+                            </div>
+                            <div class="milestone current">
+                                <i class="fas fa-circle"></i>
+                                <span>Backend Development</span>
+                            </div>
+                            <div class="milestone">
+                                <i class="far fa-circle"></i>
+                                <span>Database Management</span>
+                            </div>
+                            <div class="milestone">
+                                <i class="far fa-circle"></i>
+                                <span>DevOps & Deployment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Distribution -->
+            <div class="col-md-6">
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h2>Performance Distribution</h2>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="performanceDistribution"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning Pattern -->
+            <div class="col-md-6">
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h2>Learning Pattern Analysis</h2>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="learningPattern"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skill Breakdown -->
+            <div class="col-md-8">
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h2>Skill Competency Matrix</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="skill-matrix">
+                            <!-- Technical Skills -->
+                            <div class="skill-category">
+                                <h3>Technical Skills</h3>
+                                <div class="skill-items">
+                                    <div class="skill-item">
+                                        <span>JavaScript</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <span>React</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <span>Node.js</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Soft Skills -->
+                            <div class="skill-category">
+                                <h3>Soft Skills</h3>
+                                <div class="skill-items">
+                                    <div class="skill-item">
+                                        <span>Problem Solving</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <span>Communication</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="col-md-4">
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h2>Growth Recommendations</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="recommendations-list">
+                            <div class="recommendation-item">
+                                <div class="recommendation-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="recommendation-content">
+                                    <h4>Advanced React Patterns</h4>
+                                    <p>Enhance your React skills with advanced concepts</p>
+                                </div>
+                            </div>
+                            <div class="recommendation-item">
+                                <div class="recommendation-icon">
+                                    <i class="fas fa-code-branch"></i>
+                                </div>
+                                <div class="recommendation-content">
+                                    <h4>GraphQL Fundamentals</h4>
+                                    <p>Learn modern API development</p>
+                                </div>
+                            </div>
+                            <div class="recommendation-item">
+                                <div class="recommendation-icon">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <div class="recommendation-content">
+                                    <h4>System Design</h4>
+                                    <p>Focus on scalable architecture</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

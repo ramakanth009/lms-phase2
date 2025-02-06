@@ -1,30 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assessments</title>
+    <title>Technical Assessment</title>
+    
 </head>
+
 <body>
     <div class="assessment-container" id="assessments">
         <!-- Initial Assessment Card -->
         <div class="assessment-card" id="assessment-intro">
-            <div class="assessment-header">Technical Assessment</div>
-            <div class="time-allocation-container">
-                <div class="time-allocation">Time Allocation: 90 minutes</div>
-                <p>Please complete all sections within the allocated time.</p>
+            <div class="header-container">
+                <div class="header-content">
+                    <h1>Technical Assessment</h1>
+                    <p>Complete the assessment to evaluate your skills</p>
+                </div>
+                <button class="start-btn" onclick="startAssessment()">Start Assessment</button>
             </div>
-            <div class="instructions">
-                <div class="instructionhead">Instructions:</div>
-                <div class="instructiontext">
-                    This assessment consists of three sections: MCQs, Written Response, and Coding Challenge.
-                    <br>You cannot return to previous questions in the MCQ section.
-                    <br>Your progress is automatically saved in the Written Response section.
-                    <br>The Coding section requires a built-in compiler for testing your code.
-                    <br>A minimum score of 70% is required to pass this assessment.
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-value">90 mins</div>
+                    <div class="info-label">Duration</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-list"></i>
+                    </div>
+                    <div class="info-value">30</div>
+                    <div class="info-label">Questions</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="info-value">70%</div>
+                    <div class="info-label">Pass Mark</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="info-value">2</div>
+                    <div class="info-label">Attempts Left</div>
                 </div>
             </div>
-            <button class="start-btn" onclick="startAssessment()">Start Assessment</button>
+
+            <div class="assessment-instructions">
+                <h3>Instructions</h3>
+                <ul>
+                    <li>This assessment consists of 30 technical questions to be completed in 90 minutes.</li>
+                    <li>You have 3 attempts to achieve a passing score. Make sure you're well prepared before starting.</li>
+                    <li>Timer will start immediately after clicking "Start Assessment".</li>
+                    <li>The assessment will auto-submit when the timer reaches zero.</li>
+                    <li>Questions must be answered in sequential order - you cannot go back to previous questions.</li>
+                    <li>Each question has a point value based on its difficulty level.</li>
+                    <li>Your progress is automatically saved after each answer.</li>
+                    <li>Do not refresh or leave the page during the assessment.</li>
+                    <li>Ensure you have a stable internet connection before starting.</li>
+                    <li>A minimum score of 70% is required to pass this assessment.</li>
+                    <li>Your results will be displayed immediately after submission.</li>
+                    <li>You can attempt the assessment again after 24 hours if you don't pass.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-header">Assessment Sections</h2>
+            <div class="section-grid">
+                <div class="section-card">
+                    <div class="section-icon"><i class="fas fa-list"></i></div>
+                    <div class="section-title">Multiple Choice</div>
+                    <div class="section-details">20 questions</div>
+                    <div class="section-time">30 minutes</div>
+                </div>
+                <div class="section-card">
+                    <div class="section-icon"><i class="fas fa-pencil-alt"></i></div>
+                    <div class="section-title">Written Response</div>
+                    <div class="section-details">5 questions</div>
+                    <div class="section-time">30 minutes</div>
+                </div>
+                <div class="section-card">
+                    <div class="section-icon"><i class="fas fa-code"></i></div>
+                    <div class="section-title">Coding Challenge</div>
+                    <div class="section-details">5 questions</div>
+                    <div class="section-time">30 minutes</div>
+                </div>
+            </div>
+            <div class="assessment-metrics" id="assessment-metrics">
+                <h2 class="metrics-title">Previous Assessment Performance</h2>
+                <div class="metrics-grid">
+                    <div class="metrics-card overall-score">
+                        <h3>Overall Score</h3>
+                        <div class="score">65%</div>
+                        <div class="attempt-info">Attempt 1 of 3</div>
+                    </div>
+                    <div class="metrics-card time-taken">
+                        <h3>Time Taken</h3>
+                        <div class="time">75 minutes</div>
+                        <div class="time-info">out of 90 minutes</div>
+                    </div>
+                    <div class="metrics-card accuracy">
+                        <h3>Accuracy</h3>
+                        <div class="accuracy-rate">70%</div>
+                        <div class="accuracy-info">21/30 correct answers</div>
+                    </div>
+                </div>
+
+                <div class="performance-breakdown">
+                    <h3>Section-wise Performance</h3>
+                    <div class="chart-wrapper">
+                        <div class="chart-container">
+                            <canvas id="sectionPerformance"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metrics-details">
+                    <div class="chart-row">
+                        <div class="chart-wrapper">
+                            <h3>Time Distribution</h3>
+                            <div class="chart-container">
+                                <canvas id="timeDistribution"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <h3>Question Type Performance</h3>
+                            <div class="chart-container">
+                                <canvas id="questionPerformance"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="evaluation-feedback">
+                    <h3>Performance Evaluation</h3>
+                    <div class="feedback-card">
+                        <div class="feedback-header">
+                            <i class="fas fa-clipboard-check"></i>
+                            <h4>Strengths</h4>
+                        </div>
+                        <ul>
+                            <li>Strong performance in JavaScript fundamentals</li>
+                            <li>Good problem-solving approach in coding questions</li>
+                            <li>Efficient time management in MCQ section</li>
+                        </ul>
+                    </div>
+                    <div class="feedback-card">
+                        <div class="feedback-header">
+                            <i class="fas fa-clipboard-list"></i>
+                            <h4>Areas for Improvement</h4>
+                        </div>
+                        <ul>
+                            <li>Review advanced React concepts</li>
+                            <li>Practice more system design questions</li>
+                            <li>Focus on optimization techniques</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Main Assessment Section -->
@@ -35,13 +172,13 @@
                 </div>
                 <div class="assessment-progress">
                     <div class="progress-step active" data-step="mcq">
-                        <span class="step-dot">●</span>MCQ
+                        <span class="step-dot"></span>MCQ
                     </div>
                     <div class="progress-step" data-step="written">
-                        <span class="step-dot">●</span>Written
+                        <span class="step-dot"></span>Written
                     </div>
                     <div class="progress-step" data-step="coding">
-                        <span class="step-dot">●</span>Coding
+                        <span class="step-dot"></span>Coding
                     </div>
                 </div>
                 <div class="assessment-timer">
@@ -58,7 +195,7 @@
                     </div>
                     <div class="assessment-options">
                         <div class="assessment-option" onclick="selectOption(this)">
-                            To handle side effects in functional components
+                            To handle side effects in functional components 
                         </div>
                         <div class="assessment-option" onclick="selectOption(this)">
                             To create new components
@@ -70,6 +207,91 @@
                             To manage state
                         </div>
                     </div>
+                    <div class="question-text mb-4">
+                        Which hook is used for state management in React?
+                    </div>
+                    <div class="assessment-options">
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            useContext
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            useState 
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            useReducer
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            useRef
+                        </div>
+                    </div>
+                    <div class="question-text mb-4">
+                        What is the virtual DOM in React?
+                    </div>
+                    <div class="assessment-options">
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            A direct copy of the browser's DOM
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            A lightweight copy of the actual DOM 
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            A programming concept
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            A browser feature
+                        </div>
+                    </div>
+                    <div class="question-text mb-4">
+                        What is the purpose of the key prop in React lists?
+                    </div>
+                    <div class="assessment-options">
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            For styling elements
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            For unique identification of elements 
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            For adding event listeners
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            For animation purposes
+                        </div>
+                    </div>
+                    <div class="question-text mb-4">
+                        What is Redux used for?
+                    </div>
+                    <div class="assessment-options">
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            State management 
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            Routing
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            Form validation
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            API calls
+                        </div>
+                    </div>
+                    <div class="question-text mb-4">
+                        What does JSX stand for in React?
+                    </div>
+                    <div class="assessment-options">
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            JavaScript XML 
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            JavaScript Extension
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            JSON XML
+                        </div>
+                        <div class="assessment-option" onclick="selectOption(this)">
+                            Java Syntax Extension
+                        </div>
+                    </div>
                     <div class="d-flex justify-content-end mt-4">
                         <button class="btn btn-primary" onclick="nextSection('written')">Next</button>
                     </div>
@@ -78,7 +300,12 @@
                 <!-- Written Section -->
                 <section class="assessment-section" id="writtenSection" style="display: none;">
                     <div class="question-text mb-4">
-                        Explain the concept of microservices architecture and its advantages over monolithic architecture.
+                        Explain the concept of microservices architecture and its advantages over monolithic
+                        architecture.
+                    </div>
+                    <textarea class="form-control mb-4" placeholder="Type your answer here..." rows="8"></textarea>
+                    <div class="question-text mb-4">
+                        Describe the principles of Clean Code and how they contribute to maintainable software.
                     </div>
                     <textarea class="form-control mb-4" placeholder="Type your answer here..." rows="8"></textarea>
                     <div class="d-flex justify-content-end">
@@ -91,13 +318,43 @@
                     <div class="question-text mb-4">
                         Write a function that finds the longest palindromic substring in a given string.
                     </div>
-                    <textarea class="form-control mb-4" placeholder="function longestPalindrome(s) { ... }" rows="10"></textarea>
+                    <textarea class="form-control mb-4" placeholder="function longestPalindrome(s) { ... }"
+                        rows="10"></textarea>
+                    <div class="question-text mb-4">
+                        Implement a function to perform binary search on a sorted array.
+                    </div>
+                    <textarea class="form-control mb-4" placeholder="function binarySearch(arr, target) { ... }"
+                        rows="10"></textarea>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-primary" onclick="submitAssessment()">Submit</button>
+                        <button class="btn btn-primary" onclick="submitAssessment()">Save</button>
+                    </div>
+
+                    <div id="submissionPopup" class="popup" style="display: none;">
+                        <div class="popup-content">
+                            <div class="popup-header">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h2>Important Notice</h2>
+                            </div>
+                            <p>Once submitted, you cannot modify your answers. Please review carefully.</p>
+                            <div class="assessment-summary">
+                                <h3>Assessment Summary</h3>
+                                <ul>
+                                    <li>MCQ Section: 20/20 Completed</li>
+                                    <li>Written Response: 3/3 Completed</li>
+                                    <li>Coding Challenge: 2/2 Completed</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-secondary" onclick="closePopup()">Review Answers</button>
+                                <button class="btn btn-primary" onclick="confirmSubmission()">Submit Assessment</button>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
         </div>
     </div>
+    
 </body>
+
 </html>

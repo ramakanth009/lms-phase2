@@ -11,10 +11,14 @@
         <div style="display: flex; gap: 20px">
             <!-- First Dropdown -->
             <div class="dropdown">
-                <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" id="dropdown-branch-button" type="button">
+                <button class="btn btn-secondary dropdown-toggle" 
+                        type="button" 
+                        id="dropdown-branch-button" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
                     Select Branch
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" aria-labelledby="dropdown-branch-button">
                     <li><a class="dropdown-item" data-branch="CSE / IT" href="#">CSE / IT</a></li>
                     <li><a class="dropdown-item" data-branch="ECE, EEE, EIE" href="#">ECE, EEE, EIE</a></li>
                     <li><a class="dropdown-item" data-branch="Mechanical" href="#">Mechanical</a></li>
@@ -25,10 +29,14 @@
 
             <!-- Second Dropdown (Initially Hidden) -->
             <div class="dropdown" id="second-dropdown-container" style="display: none">
-                <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" id="dropdown-subject-button" type="button">
+                <button class="btn btn-secondary dropdown-toggle" 
+                        type="button" 
+                        id="dropdown-subject-button" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
                     Indicate Job Preference
                 </button>
-                <ul class="dropdown-menu" id="dropdown-subject-menu">
+                <ul class="dropdown-menu" aria-labelledby="dropdown-subject-button">
                     <!-- Job roles for each branch -->
                     <li class="job-roles d-none" id="CSE / IT-roles">
                         <a class="dropdown-item" data-role="Full Stack Developer" href="#">Full Stack Developer</a>

@@ -4,7 +4,10 @@ const sectionPaths = {
     'profile': 'profile/profile.html',
     'curriculum': 'curriculam/curriculam.html',
     'assessments': 'assessments/assessments.html',
-    'ai-quiz': 'aiquiz/aiquiz.html'
+    'ai-quiz': 'aiquiz/aiquiz.html',
+    'blog': 'blog/blog.html',
+    'gigalibrary': 'gigalibrary/gigalibrary.html',
+    'analytics': 'analytics/analytics.html'
 };
 
 // Main initialization function
@@ -27,6 +30,8 @@ async function initializeApplication() {
     initializeCurriculum();
     initializeAssessment();
     initializeQuiz();
+    initializeBlog();
+    initializeAnalytics();
 }
 
 // Initialize everything when DOM is loaded
@@ -43,29 +48,34 @@ document.querySelectorAll(".nav-link").forEach((link) => {
 // });
 // Navigation Functionality
 function initializeNavigation() {
-  document.querySelectorAll(".nav-link").forEach((link) => {
-      link.addEventListener("click", function(e) {
-          e.preventDefault();
-          const target = this.getAttribute("data-target");
-          
-          // Hide all sections
-          document.querySelectorAll(".main-content > div").forEach((section) => {
-              section.style.display = "none";
-          });
-          
-          // Show target section
-          const targetSection = document.getElementById(target);
-          if (targetSection) {
-              targetSection.style.display = "block";
-          }
-          
-          // Update active state
-          document.querySelectorAll(".nav-link").forEach((nav) => {
-              nav.classList.remove("active");
-          });
-          this.classList.add("active");
-      });
-  });
+    document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", function(e) {
+            e.preventDefault();
+            const target = this.getAttribute("data-target");
+            
+            // Hide all sections
+            document.querySelectorAll(".main-content > div").forEach((section) => {
+                section.style.display = "none";
+            });
+            
+            // Show target section
+            const targetSection = document.getElementById(target);
+            if (targetSection) {
+                targetSection.style.display = "block";
+                // Initialize metrics if this is the assessments section
+                if (target === 'assessments') {
+                    const metricsManager = new AssessmentMetrics();
+                    setTimeout(() => metricsManager.initialize(), 100);
+                }
+            }
+            
+            // Update active state
+            document.querySelectorAll(".nav-link").forEach((nav) => {
+                nav.classList.remove("active");
+            });
+            this.classList.add("active");
+        });
+    });
 }
 
 // Dashboard Initialization
@@ -282,6 +292,17 @@ function initializeQuiz() {
     const quizManager = new QuizManager();
 }
 
+function initializeAnalytics() {
+    document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", function(e) {
+            if (this.getAttribute("data-target") === "analytics") {
+                setTimeout(() => {
+                    new AnalyticsDashboard();
+                }, 100);
+            }
+        });
+    });
+}
 
 function toggleNotifications() {
     const dropdown = document.getElementById('notificationDropdown');

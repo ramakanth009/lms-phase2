@@ -1,0 +1,143 @@
+<div class="blog-page-layout">
+    <div class="blog-container">
+        <div class="create-post-container card mb-4">
+            <div class="card-body">
+                <div class="post-input-wrapper">
+                    <div class="user-avatar">RK</div>
+                    <button class="create-post-button" onclick="openPostModal()">
+                        Share an update or announcement...
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="posts-container">
+            <!-- Posts will be dynamically inserted here -->
+        </div>
+    </div>
+    
+    <div class="right-sidebar">
+        <div class="clubs-sidebar">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Clubs to Join</h5>
+                </div>
+                <div class="clubs-list">
+                    <div class="club-item">
+                        <div class="club-avatar">TC</div>
+                        <div class="club-info">
+                            <h6>Tech Club</h6>
+                            <p>450 members</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary join-club-btn">Join</button>
+                    </div>
+                    <div class="club-item">
+                        <div class="club-avatar">LC</div>
+                        <div class="club-info">
+                            <h6>Literature Club</h6>
+                            <p>280 members</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary join-club-btn">Join</button>
+                    </div>
+                    <div class="club-item">
+                        <div class="club-avatar">SC</div>
+                        <div class="club-info">
+                            <h6>Sports Club</h6>
+                            <p>620 members</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary join-club-btn">Join</button>
+                    </div>
+                    <div class="club-item">
+                        <div class="club-avatar">DC</div>
+                        <div class="club-info">
+                            <h6>Drama Club</h6>
+                            <p>180 members</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary join-club-btn">Join</button>
+                    </div>
+                    <div class="club-item">
+                        <div class="club-avatar">MC</div>
+                        <div class="club-info">
+                            <h6>Music Club</h6>
+                            <p>340 members</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary join-club-btn">Join</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="notice-board card mt-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Notice Board</h5>
+                <span class="badge bg-danger">New</span>
+            </div>
+            <div class="notice-list">
+                <div class="notice-item important">
+                    <div class="notice-title">
+                        <i class="fas fa-exclamation-circle text-danger"></i>
+                        Final Semester Examination Schedule
+                    </div>
+                    <div class="notice-date">Posted: Mar 15, 2024</div>
+                    <div class="notice-content">
+                        Final examinations will commence from April 20, 2024. Detailed schedule available on student portal.
+                    </div>
+                </div>
+                <div class="notice-item">
+                    <div class="notice-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Mid-Term Results Declaration
+                    </div>
+                    <div class="notice-date">Posted: Mar 10, 2024</div>
+                    <div class="notice-content">
+                        Mid-term examination results are now available. Check your results in the student portal.
+                    </div>
+                </div>
+                <div class="notice-item">
+                    <div class="notice-title">
+                        <i class="fas fa-book"></i>
+                        Internal Assessment Submission
+                    </div>
+                    <div class="notice-date">Posted: Mar 5, 2024</div>
+                    <div class="notice-content">
+                        Last date for internal assessment submission is March 25, 2024.
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <a href="#" class="text-primary">View All Notices</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Post Modal -->
+<div class="modal fade" id="createPostModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <textarea class="form-control" id="postContent" rows="4" placeholder="What's on your mind?"></textarea>
+                </div>
+                <div class="attachment-options">
+                    <button class="btn btn-light" onclick="triggerImageUpload()">
+                        <i class="fas fa-image"></i> Photo
+                    </button>
+                    <button class="btn btn-light" onclick="triggerFileUpload()">
+                        <i class="fas fa-file"></i> Document
+                    </button>
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none">
+                    <input type="file" id="fileUpload" style="display: none">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="createPost()">Post</button>
+            </div>
+        </div>
+    </div>
+</div>

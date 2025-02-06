@@ -1,0 +1,83 @@
+<div class="library-container">
+    <div class="library-main">
+        <!-- Storage Info -->
+        <div class="storage-info mb-4">
+            <div class="storage-progress">
+                <div class="progress">
+                    <div class="progress-bar" style="width: 65%"></div>
+                </div>
+                <p>6.5 GB of 10 GB used</p>
+            </div>
+            <button class="btn btn-primary btn-sm">
+                <i class="fas fa-upload"></i> Upload Files
+            </button>
+        </div>
+
+        <!-- File Navigation -->
+        <div class="file-navigation mb-3">
+            <div class="breadcrumb-nav">
+                <span>My Drive</span> <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="view-options">
+                <button class="btn btn-light btn-sm">
+                    <i class="fas fa-th"></i>
+                </button>
+                <button class="btn btn-light btn-sm">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Files Grid -->
+        <div class="files-grid">
+            <!-- Folders -->
+            <div class="file-item folder">
+                <i class="fas fa-folder"></i>
+                <span>Assignments</span>
+            </div>
+            <div class="file-item folder">
+                <i class="fas fa-folder"></i>
+                <span>Study Materials</span>
+            </div>
+            <div class="file-item folder">
+                <i class="fas fa-folder"></i>
+                <span>Projects</span>
+            </div>
+
+            <!-- Files -->
+            <div class="file-item">
+                <i class="fas fa-file-pdf"></i>
+                <span>Course_Notes.pdf</span>
+            </div>
+            <div class="file-item">
+                <i class="fas fa-file-word"></i>
+                <span>Assignment1.docx</span>
+            </div>
+            <div class="file-item">
+                <i class="fas fa-file-powerpoint"></i>
+                <span>Presentation.pptx</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Assistant Sidebar -->
+    <div class="ai-assistant">
+        <div class="assistant-header">
+            <h5>AI Assistant</h5>
+            <small>Ask me anything about your files</small>
+        </div>
+        
+        <div class="chat-container">
+            <div class="chat-messages">
+                <!-- Messages will be dynamically added here -->
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" placeholder="Ask a question..." id="assistantInput">
+                <button class="btn btn-primary btn-sm" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
