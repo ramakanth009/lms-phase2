@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessments</title>
+</head>
+<body>
+    <!-- Pre-assessment Dashboard View -->
+<div class="assessment-dashboard mb-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <h2 class="mb-2">Technical Assessment</h2>
+            <p class="text-muted">Complete the assessment to evaluate your skills</p>
+        </div>
+        <button class="start-assessment-btn" onclick="startAssessment()">
+            Start Assessment
+        </button>
+    </div>
+
+    <div class="assessment-stats row g-4 mt-2">
+        <!-- Assessment Overview Cards -->
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-details">
+                    <h3>90 mins</h3>
+                    <p>Duration</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="stat-details">
+                    <h3>30</h3>
+                    <p>Questions</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <div class="stat-details">
+                    <h3>70%</h3>
+                    <p>Pass Mark</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-redo"></i>
+                </div>
+                <div class="stat-details">
+                    <h3>2</h3>
+                    <p>Attempts Left</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assessment Sections Preview -->
+    <div class="assessment-preview mt-4">
+        <h3 class="mb-3">Assessment Sections</h3>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="section-card">
+                    <div class="section-icon">
+                        <i class="fas fa-list"></i>
+                    </div>
+                    <h4>Multiple Choice</h4>
+                    <p>20 questions</p>
+                    <div class="time-info">
+                        <i class="fas fa-clock"></i>
+                        <span>30 minutes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="section-card">
+                    <div class="section-icon">
+                        <i class="fas fa-pen"></i>
+                    </div>
+                    <h4>Written Response</h4>
+                    <p>5 questions</p>
+                    <div class="time-info">
+                        <i class="fas fa-clock"></i>
+                        <span>30 minutes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="section-card">
+                    <div class="section-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>Coding Challenge</h4>
+                    <p>5 questions</p>
+                    <div class="time-info">
+                        <i class="fas fa-clock"></i>
+                        <span>30 minutes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Existing Assessment Container (Initially Hidden) -->
+<div class="assessment-container" id="assessments" style="display: none;">
+    <!-- Initial Assessment Card -->
+    <div class="assessment-card" id="assessment-intro">
+        <div class="assessment-header">Technical Assessment</div>
+        <div class="time-allocation-container">
+            <div class="time-allocation">Time Allocation: 90 minutes</div>
+            <p>Please complete all sections within the allocated time.</p>
+        </div>
+        <div class="instructions">
+            <div class="instructionhead">Instructions:</div>
+            <div class="instructiontext">
+                This assessment consists of three sections: MCQs, Written Response, and Coding Challenge.
+                <br>You cannot return to previous questions in the MCQ section.
+                <br>Your progress is automatically saved in the Written Response section.
+                <br>The Coding section requires a built-in compiler for testing your code.
+                <br>A minimum score of 70% is required to pass this assessment.
+            </div>
+        </div>
+        <button class="start-btn" onclick="startAssessment()">Start Assessment</button>
+    </div>
+
+    <!-- Main Assessment Section -->
+    <div class="main-assessment" id="main-assessment" style="display: none;">
+        <div class="assessment-header">
+            <div class="assessment-brand">
+                <div class="assessment-brand-icon">✓</div>CareerAssess
+            </div>
+            <div class="assessment-progress">
+                <div class="progress-step active" data-step="mcq">
+                    <span class="step-dot">●</span>MCQ
+                </div>
+                <div class="progress-step" data-step="written">
+                    <span class="step-dot">●</span>Written
+                </div>
+                <div class="progress-step" data-step="coding">
+                    <span class="step-dot">●</span>Coding
+                </div>
+            </div>
+            <div class="assessment-timer">
+                <i class="fas fa-clock"></i>
+                <span id="timer">90:00</span>
+            </div>
+        </div>
+
+        <div class="assessment-content">
+            <!-- MCQ Section -->
+            <section class="assessment-section" id="mcqSection">
+                <div class="question-text mb-4">
+                    What is the primary purpose of React's useEffect hook?
+                </div>
+                <div class="assessment-options">
+                    <div class="assessment-option" onclick="selectOption(this)">
+                        To handle side effects in functional components
+                    </div>
+                    <div class="assessment-option" onclick="selectOption(this)">
+                        To create new components
+                    </div>
+                    <div class="assessment-option" onclick="selectOption(this)">
+                        To style components
+                    </div>
+                    <div class="assessment-option" onclick="selectOption(this)">
+                        To manage state
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-4">
+                    <button class="btn btn-primary" onclick="nextSection('written')">Next</button>
+                </div>
+            </section>
+
+            <!-- Written Section -->
+            <section class="assessment-section" id="writtenSection" style="display: none;">
+                <div class="question-text mb-4">
+                    Explain the concept of microservices architecture and its advantages over monolithic architecture.
+                </div>
+                <textarea class="form-control mb-4" placeholder="Type your answer here..." rows="8"></textarea>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary" onclick="nextSection('coding')">Next</button>
+                </div>
+            </section>
+
+            <!-- Coding Section -->
+            <section class="assessment-section" id="codingSection" style="display: none;">
+                <div class="question-text mb-4">
+                    Write a function that finds the longest palindromic substring in a given string.
+                </div>
+                <textarea class="form-control mb-4" placeholder="function longestPalindrome(s) { ... }" rows="10"></textarea>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary" onclick="submitAssessment()">Submit</button>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+</body>
+</html>

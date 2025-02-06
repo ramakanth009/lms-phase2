@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>DashLite - Learning Management Dashboard</title>
+          
+</head>
+<body>
+  
+    <div id="ai-quiz">
+      <div class="quiz-container">
+        <div class="quiz-card">
+          <div class="quiz-card-header">
+            <div style="margin-bottom: 20px">
+              <h2>Today's Quiz is Ready!</h2>
+              <p>Complete today's quiz to maintain your learning streak</p>
+            </div>
+            <span class="questions-badge">10 Questions</span>
+          </div>
+          <button class="start-quiz-btn">Start Quiz</button>
+        </div>
+        <div class="stats-container">
+          <div class="stat-box">
+            <div class="stat-value">75%</div>
+            <div class="stat-label">Weekly Progress</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">12</div>
+            <div class="stat-label">Day Streak</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">10</div>
+            <div class="stat-label">Attempted Quiz</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">58%</div>
+            <div class="stat-label">Average Score</div>
+          </div>
+        </div>
+        <div class="upcoming-recent-container">
+          <div class="upcoming-section">
+            <div class="upcoming-header">Upcoming Quiz</div>
+            <div class="upcoming-item">
+              <div class="quiz-info">
+                <div class="calendar-icon">
+                  <i class="fa-brands fa-react"></i>
+                </div>
+                <div>
+                  <div class="quiz-name">React Advanced</div>
+                  <div class="quiz-date">March 16, 2024 • 2:00 PM</div>
+                </div>
+              </div>
+            </div>
+            <div class="upcoming-item">
+              <div class="quiz-info">
+                <div class="calendar-icon">
+                  <i class="fa-solid fa-terminal"></i>
+                </div>
+                <div>
+                  <div class="quiz-name">TypeScript Basics</div>
+                  <div class="quiz-date">March 18, 2024 • 10:00 AM</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="recent-achievements">
+            <div class="recent-header">Recent Achievements</div>
+            <div class="recent-item">
+              <div class="quiz-info">
+                <div class="calendar-icon">
+                  <i class="fa-solid fa-fire-flame-curved"></i>
+                </div>
+                <div>
+                  <div class="quiz-name">7-Day Streak</div>
+                  <div class="quiz-date">Completed quizzes for 7 days</div>
+                </div>
+              </div>
+            </div>
+            <div class="recent-item">
+              <div class="quiz-info">
+                <div class="calendar-icon">
+                  <i class="fa-solid fa-square-poll-vertical"></i>
+                </div>
+                <div>
+                  <div class="quiz-name">Perfect Score</div>
+                  <div class="quiz-date">Scored 100% in HTML Basics</div>
+                </div>
+              </div>
+            </div>
+            <div class="recent-item">
+              <div class="quiz-info">
+                <div class="calendar-icon">
+                  <i class="fa-brands fa-leanpub"></i>
+                </div>
+                <div>
+                  <div class="quiz-name">Quick Learner</div>
+                  <div class="quiz-date">Completed 5 quizzes in one day</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="completed-quizzes">
+          <div class="quiz-detail-card">
+            <div class="quiz-title">JavaScript Fundamentals</div>
+            <div class="quiz-score">6/10</div>
+            <div class="quiz-description">
+              Great understanding of core concepts!
+            </div>
+            <button class="review-quiz-btn">Review Quiz</button>
+          </div>
+          <div class="quiz-detail-card">
+            <div class="quiz-title">React Components</div>
+            <div class="quiz-score">5/10</div>
+            <div class="quiz-description">
+              Excellent work on component lifecycle!
+            </div>
+            <button class="review-quiz-btn">Review Quiz</button>
+          </div>
+          <div class="quiz-detail-card">
+            <div class="quiz-title">CSS Layouts</div>
+            <div class="quiz-score">7/10</div>
+            <div class="quiz-description">
+              Good progress on flexbox concepts!
+            </div>
+            <button class="review-quiz-btn">Review Quiz</button>
+          </div>
+          <div class="quiz-detail-card">
+            <div class="quiz-title">HTML Basics</div>
+            <div class="quiz-score">9/10</div>
+            <div class="quiz-description">
+              Perfect score! Outstanding performance!
+            </div>
+            <button class="review-quiz-btn">Review Quiz</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz Modal -->
+      <div class="quiz-modal" id="quizModal">
+        <button type="button" class="close-modal" aria-label="Close"></button>
+        <div class="quiz-modal-content">
+          <div id="quizContent">
+            <div class="progress-container">
+              <div class="progress">
+                <div class="progress-bar bg-primary"
+                     role="progressbar"
+                     style="width: 0%">
+                </div>
+              </div>
+              <p class="text-end mt-2">
+                <span id="currentQuestion">1</span>/
+                <span id="totalQuestions">10</span>
+              </p>
+            </div>
+            <h3 class="mb-4" id="questionText"></h3>
+            <div id="optionsContainer"></div>
+            <button class="btn btn-primary mt-4 d-none" id="nextButton">
+              Next Question
+            </button>
+          </div>
+          <div class="results-container d-none" id="resultsContainer">
+            <h2>Quiz Results</h2>
+            <div class="score-display mb-4">
+              <h3>
+                Your Score:
+                <span id="finalScore">0</span>/
+                <span id="totalScore">0</span>
+              </h3>
+            </div>
+            <div id="detailedResults"></div>
+            <button class="btn btn-primary mt-4" id="closeResults">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Performance Dashboard Section -->
+<div class="container-fluid quiz-performance-dashboard p-4">
+  <h2 class="mb-4">Performance Analytics</h2>
+  
+  <div class="row g-4">
+      <!-- Success Rate Card -->
+      <div class="col-md-6 col-lg-3">
+          <div class="performance-card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="card-title mb-0">Success Rate</h5>
+                  <span class="badge bg-success">Trending Up</span>
+              </div>
+              <div class="card-body chart-container">
+                  <canvas id="successRateChart"></canvas>
+              </div>
+          </div>
+      </div>
+
+      <!-- Failure Rate Card -->
+      <div class="col-md-6 col-lg-3">
+          <div class="performance-card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="card-title mb-0">Failure Rate</h5>
+                  <span class="badge bg-danger">Decreasing</span>
+              </div>
+              <div class="card-body chart-container">
+                  <canvas id="failureRateChart"></canvas>
+              </div>
+          </div>
+      </div>
+
+      <!-- Improvement Areas Card -->
+      <div class="col-md-6 col-lg-3">
+          <div class="performance-card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="card-title mb-0">Enhancements</h5>
+                  <!-- <h5 class="card-title mb-0">Improvement Areas</h5> -->
+                  <span class="badge bg-warning text-dark">Focus Areas</span>
+              </div>
+              <div class="card-body chart-container">
+                  <canvas id="improvementAreasChart"></canvas>
+              </div>
+          </div>
+      </div>
+
+      <!-- Overall Progress Card -->
+      <div class="col-md-6 col-lg-3">
+          <div class="performance-card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="card-title mb-0">Overall Progress</h5>
+                  <span class="badge bg-primary">Monthly</span>
+              </div>
+              <div class="card-body chart-container">
+                  <canvas id="overallProgressChart"></canvas>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Insights Section -->
+  <div class="insights-section mt-4">
+      <div class="card">
+          <div class="card-header">
+              <h5 class="card-title mb-0">Performance Insights</h5>
+          </div>
+          <div class="card-body">
+              <ul class="list-group list-group-flush" id="performanceInsights">
+                  <!-- Insights will be populated by JavaScript -->
+              </ul>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+  </div>
+    
+</body>
+</html>

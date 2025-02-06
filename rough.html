@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Quiz Performance Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --success-color: #48bb78;
+            --danger-color: #f56565;
+            --warning-color: #ecc94b;
+            --info-color: #4299e1;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .quiz-performance-dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .performance-card {
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: white;
+            overflow: hidden;
+        }
+
+        .performance-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .performance-card .card-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem;
+        }
+
+        .performance-card .badge {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.5rem;
+            font-weight: 500;
+        }
+
+        .insights-section .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-left: none;
+            border-right: none;
+        }
+
+        .insights-section .insight-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .card-body {
+            padding: 1.25rem;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 200px !important;
+        }
+
+        @media (max-width: 768px) {
+            .performance-card {
+                margin-bottom: 1rem;
+            }
+            
+            .quiz-performance-dashboard {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid quiz-performance-dashboard p-4">
+        <h2 class="mb-4">AI Quiz Performance Dashboard</h2>
+        
+        <div class="row g-4">
+            <!-- Success Rate Graph -->
+            <div class="col-md-6 col-lg-3">
+                <div class="performance-card card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Success Rate</h5>
+                        <span class="badge bg-success">Trending</span>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="successRateChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Failure Rate Graph -->
+            <div class="col-md-6 col-lg-3">
+                <div class="performance-card card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Failure Rate</h5>
+                        <span class="badge bg-danger">Improvement Needed</span>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="failureRateChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Improvement Areas Graph -->
+            <div class="col-md-6 col-lg-3">
+                <div class="performance-card card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Improvement Areas</h5>
+                        <span class="badge bg-warning text-dark">Focus Areas</span>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="improvementAreasChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overall Progress Graph -->
+            <div class="col-md-6 col-lg-3">
+                <div class="performance-card card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Overall Progress</h5>
+                        <span class="badge bg-primary">Monthly</span>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="overallProgressChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Insights Section -->
+        <div class="insights-section mt-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Performance Insights</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush" id="performanceInsights">
+                        <!-- Insights will be dynamically populated -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mock performance data
+            const performanceData = {
+                successRate: [
+                    { month: 'Jan', rate: 65 },
+                    { month: 'Feb', rate: 75 },
+                    { month: 'Mar', rate: 80 },
+                    { month: 'Apr', rate: 85 },
+                    { month: 'May', rate: 90 }
+                ],
+                failureRate: [
+                    { month: 'Jan', rate: 35 },
+                    { month: 'Feb', rate: 25 },
+                    { month: 'Mar', rate: 20 },
+                    { month: 'Apr', rate: 15 },
+                    { month: 'May', rate: 10 }
+                ],
+                improvementAreas: [
+                    { area: 'JavaScript', score: 75 },
+                    { area: 'React', score: 65 },
+                    { area: 'HTML', score: 25 },
+                    { area: 'CSS', score: 35 },
+                    { area: 'Data Structures', score: 70 },
+                    { area: 'Algorithms', score: 85 }
+                ],
+                overallProgress: [
+                    { month: 'Jan', progress: 60 },
+                    { month: 'Feb', progress: 70 },
+                    { month: 'Mar', progress: 75 },
+                    { month: 'Apr', progress: 82 },
+                    { month: 'May', progress: 90 }
+                ]
+            };
+
+            // Chart configuration helper functions
+            function createChartOptions(titleText) {
+                return {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            titleColor: '#000',
+                            bodyColor: '#000',
+                            borderColor: '#e0e0e0',
+                            borderWidth: 1
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                drawBorder: false
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                };
+            }
+
+            // Create Success Rate Chart
+            new Chart(document.getElementById('successRateChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: performanceData.successRate.map(d => d.month),
+                    datasets: [{
+                        label: 'Success Rate (%)',
+                        data: performanceData.successRate.map(d => d.rate),
+                        borderColor: '#48bb78',
+                        backgroundColor: 'rgba(72, 187, 120, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: createChartOptions('Success Rate Trend')
+            });
+
+            // Create Failure Rate Chart
+            new Chart(document.getElementById('failureRateChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: performanceData.failureRate.map(d => d.month),
+                    datasets: [{
+                        label: 'Failure Rate (%)',
+                        data: performanceData.failureRate.map(d => d.rate),
+                        borderColor: '#f56565',
+                        backgroundColor: 'rgba(245, 101, 101, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: createChartOptions('Failure Rate Trend')
+            });
+
+            // Create Improvement Areas Chart
+            new Chart(document.getElementById('improvementAreasChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: performanceData.improvementAreas.map(d => d.area),
+                    datasets: [{
+                        label: 'Performance Score',
+                        data: performanceData.improvementAreas.map(d => d.score),
+                        backgroundColor: '#4299e1',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    ...createChartOptions('Performance by Subject Area'),
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Create Overall Progress Chart
+            new Chart(document.getElementById('overallProgressChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: performanceData.overallProgress.map(d => d.month),
+                    datasets: [{
+                        label: 'Overall Progress (%)',
+                        data: performanceData.overallProgress.map(d => d.progress),
+                        borderColor: '#6c5ce7',
+                        backgroundColor: 'rgba(108, 92, 231, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: createChartOptions('Overall Progress')
+            });
+
+            // Generate Performance Insights
+            const insights = [
+                {
+                    icon: '📈',
+                    text: 'Your success rate has improved by 25% in the last 5 months',
+                    color: 'text-success'
+                },
+                {
+                    icon: '🎯',
+                    text: 'React and HTML/CSS are your strongest subjects',
+                    color: 'text-primary'
+                },
+                {
+                    icon: '🚀',
+                    text: 'Focus on improving Algorithms and Data Structures',
+                    color: 'text-warning'
+                },
+                {
+                    icon: '💡',
+                    text: 'Consistent monthly progress shows great learning potential',
+                    color: 'text-info'
+                }
+            ];
+
+            const insightsContainer = document.getElementById('performanceInsights');
+            insights.forEach(insight => {
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item';
+                listItem.innerHTML = `
+                    <div class="d-flex align-items-center">
+                        <span class="insight-icon ${insight.color}">${insight.icon}</span>
+                        ${insight.text}
+                    </div>
+                `;
+                insightsContainer.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum</title>
+</head>
+<body>
+    <div id="curriculum">
+
+        <div style="display: flex; gap: 20px">
+            <!-- First Dropdown -->
+            <div class="dropdown">
+                <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" id="dropdown-branch-button" type="button">
+                    Select Branch
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" data-branch="CSE / IT" href="#">CSE / IT</a></li>
+                    <li><a class="dropdown-item" data-branch="ECE, EEE, EIE" href="#">ECE, EEE, EIE</a></li>
+                    <li><a class="dropdown-item" data-branch="Mechanical" href="#">Mechanical</a></li>
+                    <li><a class="dropdown-item" data-branch="Chemical" href="#">Chemical</a></li>
+                    <li><a class="dropdown-item" data-branch="Civil" href="#">Civil</a></li>
+                </ul>
+            </div>
+
+            <!-- Second Dropdown (Initially Hidden) -->
+            <div class="dropdown" id="second-dropdown-container" style="display: none">
+                <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" id="dropdown-subject-button" type="button">
+                    Indicate Job Preference
+                </button>
+                <ul class="dropdown-menu" id="dropdown-subject-menu">
+                    <!-- Job roles for each branch -->
+                    <li class="job-roles d-none" id="CSE / IT-roles">
+                        <a class="dropdown-item" data-role="Full Stack Developer" href="#">Full Stack Developer</a>
+                        <a class="dropdown-item" data-role="Data Scientist" href="#">Data Scientist</a>
+                    </li>
+
+                    <li class="job-roles d-none" id="ECE, EEE, EIE-roles">
+                        <a class="dropdown-item" data-role="Embedded Application Developer" href="#">Embedded Application Developer (ECE)</a>
+                        <a class="dropdown-item" data-role="Electrical Design Engineer" href="#">Electrical Design Engineer (EEE)</a>
+                        <a class="dropdown-item" data-role="Electronics Engineer" href="#">Electronics Engineer (EEE, EIE & ECE)</a>
+                        <a class="dropdown-item" data-role="Trainee Engineer" href="#">Trainee Engineer</a>
+                        <a class="dropdown-item" data-role="Engineer - PLC Programmer" href="#">Engineer - PLC Programmer</a>
+                        <a class="dropdown-item" data-role="VLSI Design Engineer" href="#">VLSI Design Engineer</a>
+                    </li>
+
+                    <li class="job-roles d-none" id="Mechanical-roles">
+                        <a class="dropdown-item" data-role="Mechanical Engineer (Intern)" href="#">Mechanical Engineer (Intern)</a>
+                        <a class="dropdown-item" data-role="Mechanical Engineering, Structural Engineering" href="#">Mechanical Engineering, Structural Engineering</a>
+                        <a class="dropdown-item" data-role="R&D Intern" href="#">R&D Intern</a>
+                    </li>
+
+                    <li class="job-roles d-none" id="Chemical-roles">
+                        <a class="dropdown-item" data-role="Process Engineer in chemical plants" href="#">Process Engineer in chemical plants</a>
+                        <a class="dropdown-item" data-role="Production Engineer at pharmaceutical companies" href="#">Production Engineer at pharmaceutical companies</a>
+                        <a class="dropdown-item" data-role="Research & Development Engineer" href="#">Research & Development Engineer</a>
+                        <a class="dropdown-item" data-role="Technical Service Engineer at chemical companies" href="#">Technical Service Engineer at chemical companies</a>
+                        <a class="dropdown-item" data-role="Process Safety Engineer at industrial plants" href="#">Process Safety Engineer at industrial plants</a>
+                        <a class="dropdown-item" data-role="Environmental Engineer at treatment plants" href="#">Environmental Engineer at treatment plants</a>
+                        <a class="dropdown-item" data-role="Process Design Engineer at engineering firms" href="#">Process Design Engineer at engineering firms</a>
+                    </li>
+
+                    <li class="job-roles d-none" id="Civil-roles">
+                        <a class="dropdown-item" data-role="Site Engineer at construction companies" href="#">Site Engineer at construction companies</a>
+                        <a class="dropdown-item" data-role="Structural Design Engineer" href="#">Structural Design Engineer</a>
+                        <a class="dropdown-item" data-role="Quality Control Engineer at construction sites" href="#">Quality Control Engineer at construction sites</a>
+                        <a class="dropdown-item" data-role="AutoCAD Designer at architecture firms" href="#">AutoCAD Designer at architecture firms</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="curriculum-intro">
+            <div class="intro-card">
+                <div class="intro-header">
+                    <div class="intro-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h2>Career Path Navigator</h2>
+                </div>
+
+                <div class="intro-content">
+                    <div class="info-box">
+                        <h3>How It Works</h3>
+                        <p>Select your branch and discover tailored job roles, required skills, and career opportunities aligned with your academic background.</p>
+                    </div>
+
+                    <div class="steps-container">
+                        <div class="step-card">
+                            <div class="step-number">Step 1</div>
+                            <h4>Select Your Branch</h4>
+                            <p>Choose your engineering branch from the dropdown menu above</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">Step 2</div>
+                            <h4>Choose Job Role</h4>
+                            <p>Browse through available job roles specific to your branch</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">Step 3</div>
+                            <h4>Explore Details</h4>
+                            <p>Learn about job requirements, skills needed, and growth opportunities</p>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <i class="fas fa-info-circle"></i>
+                            <h3>Pro Tip</h3>
+                        </div>
+                        <p>The job roles are curated based on current industry demands and trending career paths in your field. Take time to explore each role thoroughly!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="selection-messages">
+            <div class="selection-message" id="branch-selected-message" style="display: none;">
+                <div class="message-card">
+                    <div class="message-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="message-content">
+                        <h4>Great choice!</h4>
+                        <p>You've selected your branch. Now, choose your preferred job role to explore detailed career information.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="selection-message" id="role-selected-message" style="display: none;">
+                <div class="explore-header">
+                    <div class="explore-icon">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <h3>Explore Career Opportunities</h3>
+                        <p>Discover detailed information about your selected role below</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Display Area -->
+        <div class="mt-4" id="content-display" style="display: none"></div>
+    </div>
+</body>
+</html>

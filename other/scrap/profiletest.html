@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DashLite - Learning Management Dashboard</title>
+
+    <!-- External CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+          rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          rel="stylesheet" />
+          
+<style>
+    :root {
+  --profile-primary-color: #6c5ce7;
+}
+
+.profile-form {
+  margin: 0 auto;
+}
+
+.profile-header {
+  background: var(--profile-primary-color);
+  padding: 30px;
+  border-radius: 12px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: white;
+  color: var(--profile-primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.profile-info input {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin: 5px 0;
+  width: 100%;
+}
+
+.profile-info input:disabled {
+  color: white;
+  opacity: 1;
+  background: transparent;
+}
+
+.profile-info input.editing {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.edit-btn {
+  background: white;
+  color: var(--profile-primary-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+  background: #f0f0f0;
+  color: var(--profile-primary-color);
+  transform: translateY(-1px);
+}
+
+.info-section {
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.info-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0;
+  /* padding: 2px 0; */
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-group:last-child {
+  border-bottom: none;
+}
+
+.info-group label {
+  color: #666;
+  font-weight: 500;
+}
+
+.info-group input {
+  width: 60%;
+  padding: 8px;
+  border-radius: 4px;
+  text-align: right;
+  color: #333;
+}
+
+.info-group input:disabled {
+  background: transparent;
+  border: none;
+  color: #333;
+}
+
+.info-group input.editing {
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.edit-btn.saving {
+  background: var(--profile-primary-color);
+  color: white;
+}
+
+#successMessage {
+  transform: translateY(-100%);
+  transition: all 0.3s ease;
+  z-index: 1050;
+}
+
+#successMessage:not(.d-none) {
+  transform: translateY(0);
+}
+
+
+/* Calendar specific styles - scoped to avoid conflicts */
+.calendar-section {
+  --calendar-primary: #6c5ce7;
+  --calendar-border: #e0e0e0;
+}
+
+.calendar-grid {
+  border: 1px solid var(--calendar-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.weekdays-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: #f8f9fa;
+  border-bottom: 1px solid var(--calendar-border);
+}
+
+.weekdays-header div {
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 500;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-day {
+  position: relative;
+  aspect-ratio: 3;
+  padding: 0.5rem;
+  border: 1px solid var(--calendar-border);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.calendar-day:hover {
+  background-color: #f8f9fa;
+}
+
+.calendar-day.today {
+  background-color: #f0f0ff;
+}
+
+.day-number {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.day-indicator {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 3px;
+}
+
+.indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* Activity type colors */
+.indicator-dot.present { background-color: #2ecc71; }
+.indicator-dot.absent { background-color: #e74c3c; }
+.indicator-dot.event { background-color: #3498db; }
+.indicator-dot.exam { background-color: #f1c40f; }
+.indicator-dot.practical { background-color: #e67e22; }
+
+/* Legend styles */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Colors for legend dots - matching indicator colors */
+.legend-dot.present { background-color: #2ecc71; }
+.legend-dot.absent { background-color: #e74c3c; }
+.legend-dot.event { background-color: #3498db; }
+.legend-dot.exam { background-color: #f1c40f; }
+.legend-dot.practical { background-color: #e67e22; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .weekdays-header div {
+      padding: 0.5rem;
+      font-size: 0.8rem;
+  }
+
+  .calendar-day {
+      padding: 0.25rem;
+  }
+
+  .day-number {
+      font-size: 0.8rem;
+  }
+}
+#attendanceChart {
+    max-height: 300px; /* Adjust as needed */
+    width: 100%; /* Ensure it occupies full width */
+}
+</style>
+<body>
+    <!-- Profile Section -->
+<div class="container" id="profile">
+  <!-- <div class="header text-center mb-4">
+    <h4 class="fw-bold fs-2">Student Profile</h4>
+    <p class="text-muted">Basic info, like student name and contact details</p>
+  </div> -->
+
+  <form class="profile-form" id="profileForm">
+    <!-- Profile Card -->
+    <div class="profile-card rounded-3 mb-4 shadow-sm bg-white">
+      <div class="profile-header d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-3">
+          <div class="avatar">RK</div>
+          <div class="profile-info">
+            <input class="fs-4 fw-semibold" disabled id="name" type="text" value="Ramakanth Kannuri">
+            <input class="opacity-75" disabled id="email" type="email" value="codevolution.business@gmail.com">
+          </div>
+        </div>
+        <div class="attendance-metrics d-flex gap-4">
+          <div class="text-center">
+            <div class="fs-3 fw-bold">85%</div>
+            <div class="small opacity-75">Overall Attendance</div>
+          </div>
+          <div class="text-center">
+            <div class="fs-3 fw-bold">92%</div>
+            <div class="small opacity-75">This Semester</div>
+          </div>
+          <button class="edit-btn btn" id="editButton" type="button">Edit Profile</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Information Grid -->
+    <div class="row">
+      <!-- Basic Information -->
+      <div class="col-md-4 mb-4">
+        <div class="info-section p-3 rounded-3 shadow-sm bg-white">
+          <h3 class="fs-5 fw-semibold mb-2 border-bottom pb-2">Basic Information</h3>
+          <div class="mb-3">
+            <div class="info-group">
+              <label>Branch:</label>
+              <input class="form-control-plaintext text-end" disabled id="branch" type="text" value="Computer Science">
+            </div>
+            <div class="info-group">
+              <label>Year:</label>
+              <input class="form-control-plaintext text-end" disabled id="year" type="text" value="3rd Year">
+            </div>
+            <div class="info-group">
+              <label>Phone:</label>
+              <input class="form-control-plaintext text-end" disabled id="phone" type="tel" value="+91 9876543210">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Information -->
+      <div class="col-md-4 mb-4">
+        <div class="info-section p-3 rounded-3 shadow-sm bg-white">
+          <h3 class="fs-5 fw-semibold mb-2 border-bottom pb-2">Additional Information</h3>
+          <div class="mb-3">
+            <div class="info-group">
+              <label>DOB:</label>
+              <input class="form-control-plaintext text-end" disabled id="dob" type="text" value="29 Feb 1988">
+            </div>
+            <div class="info-group">
+              <label>Nationality:</label>
+              <input class="form-control-plaintext text-end" disabled id="nationality" type="text" value="Indian">
+            </div>
+            <div class="info-group">
+              <label>Address:</label>
+              <input class="form-control-plaintext text-end" disabled id="address" type="text" value="Hyderabad, India">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Last Login Information -->
+      <div class="col-md-4 mb-4">
+        <div class="info-section p-3 rounded-3 shadow-sm bg-white">
+          <h3 class="fs-5 fw-semibold mb-2 border-bottom pb-2">Last Login</h3>
+          <p class="text-muted">23rd January 2025, 10:45 AM</p>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Success Message -->
+  <div class="alert alert-success position-fixed top-0 end-0 m-3 d-none" id="successMessage" role="alert">
+    Profile updated successfully!
+  </div>
+
+  <!-- Calendar Section -->
+<div class="calendar-section bg-white rounded-3 shadow-sm p-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+      <div>
+          <h3 class="fs-4 fw-semibold mb-1">Academic Calendar</h3>
+          <p class="text-muted small mb-0">Track your academic schedule and attendance</p>
+      </div>
+      <div class="d-flex gap-2">
+          <button class="btn btn-secondary active">Month</button>
+          <button class="btn btn-outline-secondary">Semester</button>
+          <div class="dropdown">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  <i class="fas fa-filter me-1"></i> Filter
+              </button>
+              <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#" data-filter="attendance">Attendance</a></li>
+                  <li><a class="dropdown-item" href="#" data-filter="exams">Exams</a></li>
+                  <li><a class="dropdown-item" href="#" data-filter="events">Events</a></li>
+                  <li><a class="dropdown-item" href="#" data-filter="practical">Practical</a></li>
+              </ul>
+          </div>
+      </div>
+  </div>
+
+  <!-- Calendar Navigation -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+      <button class="btn btn-link text-decoration-none" id="prevMonth">
+          <i class="fas fa-chevron-left"></i>
+      </button>
+      <h4 class="mb-0 fw-semibold" id="currentMonth">February 2025</h4>
+      <button class="btn btn-link text-decoration-none" id="nextMonth">
+          <i class="fas fa-chevron-right"></i>
+      </button>
+  </div>
+
+  <!-- Calendar Grid -->
+  <div class="calendar-grid mb-4">
+      <div class="weekdays-header">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+      </div>
+      <div class="calendar-days" id="calendarDays"></div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend-section mb-4">
+      <h5 class="fs-6 mb-2">Legend</h5>
+      <div class="d-flex flex-wrap gap-3">
+          <div class="legend-item">
+              <span class="legend-dot present"></span>
+              <span>Present</span>
+          </div>
+          <div class="legend-item">
+              <span class="legend-dot absent"></span>
+              <span>Absent</span>
+          </div>
+          <div class="legend-item">
+              <span class="legend-dot event"></span>
+              <span>Events</span>
+          </div>
+          <div class="legend-item">
+              <span class="legend-dot exam"></span>
+              <span>Exams</span>
+          </div>
+          <div class="legend-item">
+              <span class="legend-dot practical"></span>
+              <span>Practical</span>
+          </div>
+      </div>
+  </div>
+
+  <!-- Attendance Overview -->
+  <div class="row g-4">
+      <div class="col-md-6">
+          <div class="card h-100">
+              <div class="card-body">
+                  <h5 class="card-title mb-4">Attendance Overview</h5>
+                  <div class="d-flex justify-content-between text-center">
+                      <div>
+                          <h2 class="text-success mb-1">85%</h2>
+                          <div class="text-muted small">Overall</div>
+                      </div>
+                      <div>
+                          <h2 class="text-primary mb-1">92%</h2>
+                          <div class="text-muted small">This Month</div>
+                      </div>
+                      <div>
+                          <h2 class="text-info mb-1">89%</h2>
+                          <div class="text-muted small">Required</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div class="card h-100">
+              <div class="card-body">
+                  <h5 class="card-title mb-4">Attendance Trend</h5>
+                  <canvas id="attendanceChart" height="200"></canvas>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Upcoming Activities -->
+  <div class="upcoming-activities mt-4">
+      <h5 class="mb-3">Upcoming Activities</h5>
+      <div class="list-group">
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                  <div class="fw-medium">Mid-term Examination</div>
+                  <small class="text-muted">Mathematics - Unit 3</small>
+              </div>
+              <span class="badge bg-warning text-dark">Feb 15</span>
+          </div>
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                  <div class="fw-medium">Technical Symposium</div>
+                  <small class="text-muted">College Event</small>
+              </div>
+              <span class="badge bg-primary">Feb 20</span>
+          </div>
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                  <div class="fw-medium">Lab Assessment</div>
+                  <small class="text-muted">Computer Networks</small>
+              </div>
+              <span class="badge bg-orange">Feb 22</span>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- <script src="profile.js"></script> -->
+ <script>
+    function initializeProfile() {
+    const editButton = document.getElementById('editButton');
+    const form = document.getElementById('profileForm');
+    const successMessage = document.getElementById('successMessage');
+    let isEditing = false;
+
+    if (!editButton || !form || !successMessage) {
+        console.error('Required profile elements not found');
+        return;
+    }
+
+    editButton.addEventListener('click', function() {
+        const inputs = form.getElementsByTagName('input');
+        
+        if (!isEditing) {
+            // Enable editing
+            Array.from(inputs).forEach(input => {
+                input.disabled = false;
+                input.classList.remove('form-control-plaintext');
+                input.classList.add('form-control', 'editing');
+            });
+            editButton.textContent = 'Save Changes';
+            editButton.classList.add('saving');
+        } else {
+            // Save changes
+            Array.from(inputs).forEach(input => {
+                input.disabled = true;
+                input.classList.remove('form-control', 'editing');
+                input.classList.add('form-control-plaintext');
+            });
+            editButton.textContent = 'Edit Profile';
+            editButton.classList.remove('saving');
+            
+            // Show success message
+            successMessage.classList.remove('d-none');
+            setTimeout(() => {
+                successMessage.classList.add('d-none');
+            }, 3000);
+        }
+        isEditing = !isEditing;
+    });
+
+    // Debug log
+    console.log('Profile initialization complete');
+}
+
+// Call initialization when the profile section is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if we're on the profile section
+    const profileSection = document.getElementById('profile');
+    if (profileSection) {
+        initializeProfile();
+    }
+
+    // Add listener for navigation changes
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            if (this.getAttribute('data-target') === 'profile') {
+                // Small delay to ensure DOM is updated
+                setTimeout(initializeProfile, 100);
+            }
+        });
+    });
+});
+
+
+// Calendar Initialization
+function initializeCalendar() {
+    const calendar = new AcademicCalendar();
+    
+    // Initialize navigation event listeners
+    // initializeCalendarNavigation();
+    
+    // Initialize trends chart
+    initializeAttendanceChart();
+}
+
+class AcademicCalendar {
+    constructor() {
+        // Ensure elements exist
+        if (!document.getElementById('calendarDays')) {
+            console.error('Calendar container not found');
+            return;
+        }
+
+        this.currentDate = new Date();
+        this.selectedMonth = new Date();
+        this.activities = new Map();
+        this.filters = new Set();
+        
+        this.loadMockData();
+        this.renderCalendar();
+        this.attachEventListeners();
+    }
+
+    renderCalendar() {
+        const year = this.selectedMonth.getFullYear();
+        const month = this.selectedMonth.getMonth();
+        const currentMonth = document.getElementById('currentMonth');
+        
+        if (currentMonth) {
+            currentMonth.textContent = this.selectedMonth.toLocaleString('default', { 
+                month: 'long', 
+                year: 'numeric' 
+            });
+        }
+
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const startingDay = firstDay.getDay();
+        const totalDays = lastDay.getDate();
+
+        const calendarDays = document.getElementById('calendarDays');
+        if (!calendarDays) return;
+
+        calendarDays.innerHTML = '';
+
+        // Add empty cells for days before the first day
+        for (let i = 0; i < startingDay; i++) {
+            calendarDays.appendChild(this.createDayElement());
+        }
+
+        // Add days of the month
+        for (let day = 1; day <= totalDays; day++) {
+            calendarDays.appendChild(this.createDayElement(day));
+        }
+    }
+
+    createDayElement(day = '') {
+        const dayElement = document.createElement('div');
+        dayElement.className = 'calendar-day';
+
+        if (day) {
+            const date = new Date(
+                this.selectedMonth.getFullYear(),
+                this.selectedMonth.getMonth(),
+                day
+            );
+            const dateString = date.toISOString().split('T')[0];
+
+            dayElement.innerHTML = `
+                <div class="day-number">${day}</div>
+                <div class="day-indicator"></div>
+            `;
+
+            if (this.isToday(date)) {
+                dayElement.classList.add('today');
+            }
+
+            // Add activity indicators
+            if (this.activities.has(dateString)) {
+                const indicators = dayElement.querySelector('.day-indicator');
+                const activities = this.activities.get(dateString);
+                activities.forEach(activity => {
+                    if (!this.filters.size || this.filters.has(activity.type)) {
+                        const dot = document.createElement('div');
+                        dot.className = `indicator-dot ${activity.type}`;
+                        indicators.appendChild(dot);
+                    }
+                });
+            }
+        }
+
+        return dayElement;
+    }
+
+    loadMockData() {
+        // Mock activities data
+        const activities = [
+            {
+                date: '2025-02-15',
+                type: 'exam',
+                title: 'Mid-term Examination'
+            },
+            {
+                date: '2025-02-20',
+                type: 'event',
+                title: 'Technical Symposium'
+            },
+            {
+                date: '2025-02-22',
+                type: 'practical',
+                title: 'Lab Assessment'
+            }
+        ];
+
+        // Generate attendance data
+        const daysInMonth = new Date(2025, 2, 0).getDate();
+        for (let day = 1; day <= daysInMonth; day++) {
+            const date = `2025-02-${String(day).padStart(2, '0')}`;
+            if (!this.activities.has(date)) {
+                this.activities.set(date, []);
+            }
+
+            if (Math.random() < 0.85) {
+                this.activities.get(date).push({
+                    type: 'present',
+                    title: 'Present'
+                });
+            } else {
+                this.activities.get(date).push({
+                    type: 'absent',
+                    title: 'Absent'
+                });
+            }
+        }
+
+        activities.forEach(activity => {
+            if (!this.activities.has(activity.date)) {
+                this.activities.set(activity.date, []);
+            }
+            this.activities.get(activity.date).push(activity);
+        });
+    }
+
+    attachEventListeners() {
+        const prevButton = document.getElementById('prevMonth');
+        const nextButton = document.getElementById('nextMonth');
+
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                this.selectedMonth = new Date(
+                    this.selectedMonth.getFullYear(),
+                    this.selectedMonth.getMonth() - 1,
+                    1
+                );
+                this.renderCalendar();
+            });
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                this.selectedMonth = new Date(
+                    this.selectedMonth.getFullYear(),
+                    this.selectedMonth.getMonth() + 1,
+                    1
+                );
+                this.renderCalendar();
+            });
+        }
+
+        // Add filter handlers
+        document.querySelectorAll('[data-filter]').forEach(filter => {
+            filter.addEventListener('click', (e) => {
+                e.preventDefault();
+                const filterType = e.target.dataset.filter;
+                
+                if (this.filters.has(filterType)) {
+                    this.filters.delete(filterType);
+                    e.target.classList.remove('active');
+                } else {
+                    this.filters.add(filterType);
+                    e.target.classList.add('active');
+                }
+                
+                this.renderCalendar();
+            });
+        });
+    }
+
+    isToday(date) {
+        const today = new Date();
+        return date.getDate() === today.getDate() &&
+               date.getMonth() === today.getMonth() &&
+               date.getFullYear() === today.getFullYear();
+    }
+}
+
+let attendanceChart;
+
+function initializeAttendanceChart() {
+    const ctx = document.getElementById('attendanceChart');
+    if (!ctx) return;
+
+    if (attendanceChart) {
+        attendanceChart.destroy(); // Destroy previous instance if it exists
+    }
+
+    const data = {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+        datasets: [{
+            label: 'Attendance %',
+            data: [85, 92, 88, 90, 85],
+            borderColor: '#6c5ce7',
+            backgroundColor: 'rgba(108, 92, 231, 0.1)',
+            tension: 0.4,
+            fill: true
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    min: 60,
+                    max: 100
+                }
+            }
+        }
+    };
+
+    attendanceChart = new Chart(ctx, config);
+}
+// Initialize when profile section is loaded
+function initializeCalendarSection() {
+    const profileSection = document.getElementById('profile');
+    if (profileSection) {
+        initializeCalendar();
+    }
+}
+
+// Add to main initialization
+document.addEventListener('DOMContentLoaded', initializeCalendarSection);
+ </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</body>
+</html>

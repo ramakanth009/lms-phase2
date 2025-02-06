@@ -1,0 +1,910 @@
+:root {
+  --profile-primary-color: #6c5ce7;
+}
+.user-profile{
+  display: flex;
+}
+.profile-form {
+  margin: 0 auto;
+}
+
+.profile-header {
+  background: var(--profile-primary-color);
+  padding: 30px;
+  border-radius: 12px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: white;
+  color: var(--profile-primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.profile-info input {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin: 5px 0;
+  width: 100%;
+}
+
+.profile-info input:disabled {
+  color: white;
+  opacity: 1;
+  background: transparent;
+}
+
+.profile-info input.editing {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.edit-btn {
+  background: white;
+  color: var(--profile-primary-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.edit-btn:hover {
+  background: #f0f0f0;
+  color: var(--profile-primary-color);
+  transform: translateY(-1px);
+}
+
+.edit-btn::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  background: linear-gradient(90deg, 
+      rgba(255,255,255,0) 0%, 
+      rgba(255,255,255,0.2) 50%, 
+      rgba(255,255,255,0) 100%
+  );
+  transition: left 0.5s ease;
+  z-index: 1;
+}
+
+.edit-btn:hover::after {
+  left: 100%;
+}
+
+.info-section {
+  height: 100%;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.info-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0;
+  /* padding: 2px 0; */
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+
+.info-group:last-child {
+  border-bottom: none;
+}
+
+.info-group label {
+  color: #666;
+  font-weight: 500;
+}
+
+.info-group input {
+  width: 60%;
+  padding: 8px;
+  border-radius: 4px;
+  text-align: right;
+  color: #333;
+}
+
+.info-group input:disabled {
+  background: transparent;
+  border: none;
+  color: #333;
+}
+
+.info-group input.editing {
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.info-group:hover {
+  background-color: #f8f9fa;
+  transform: translateX(5px);
+}
+
+.edit-btn.saving {
+  background: var(--profile-primary-color);
+  color: white;
+}
+
+#successMessage {
+  transform: translateY(-100%);
+  transition: all 0.3s ease;
+  z-index: 1050;
+}
+
+#successMessage:not(.d-none) {
+  transform: translateY(0);
+}
+
+/* Calendar specific styles - scoped to avoid conflicts */
+.calendar-section {
+  --calendar-primary: #6c5ce7;
+  --calendar-border: #e0e0e0;
+}
+
+.calendar-grid {
+  border: 1px solid var(--calendar-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.weekdays-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: #f8f9fa;
+  border-bottom: 1px solid var(--calendar-border);
+}
+
+.weekdays-header div {
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 500;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-day {
+  position: relative;
+  aspect-ratio: 3;
+  padding: 0.5rem;
+  border: 1px solid var(--calendar-border);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  transition: all 0.3s ease;
+}
+
+.calendar-day:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.calendar-day.today {
+  background-color: #f0f0ff;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+      box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.4);
+  }
+  70% {
+      box-shadow: 0 0 0 10px rgba(108, 92, 231, 0);
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(108, 92, 231, 0);
+  }
+}
+
+.day-number {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.day-indicator {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 3px;
+}
+
+.indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* Activity type colors */
+.indicator-dot.present {
+  background-color: #2ecc71;
+}
+.indicator-dot.absent {
+  background-color: #e74c3c;
+}
+.indicator-dot.event {
+  background-color: #3498db;
+}
+.indicator-dot.exam {
+  background-color: #f1c40f;
+}
+.indicator-dot.practical {
+  background-color: #e67e22;
+}
+
+/* Legend styles */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Colors for legend dots - matching indicator colors */
+.legend-dot.present {
+  background-color: #2ecc71;
+}
+.legend-dot.absent {
+  background-color: #e74c3c;
+}
+.legend-dot.event {
+  background-color: #3498db;
+}
+.legend-dot.exam {
+  background-color: #f1c40f;
+}
+.legend-dot.practical {
+  background-color: #e67e22;
+}
+#attendanceChart {
+  max-height: 300px; /* Adjust as needed */
+  width: 100%; /* Ensure it occupies full width */
+}
+
+/* Attendance chart animations */
+.chart-container {
+  /* ...existing code... */
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.chart-container:hover {
+  transform: scale(1.02);
+}
+
+/* List item animations */
+.list-group-item {
+  /* ...existing code... */
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.list-group-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--profile-primary-color);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.list-group-item:hover {
+  transform: translateX(5px);
+  background-color: #f8f9fa;
+}
+
+.list-group-item:hover::before {
+  transform: scaleY(1);
+}
+
+/* Loading animation */
+.loading-animation {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.loading-animation div {
+  position: absolute;
+  border: 4px solid var(--profile-primary-color);
+  opacity: 1;
+  border-radius: 50%;
+  animation: loading-animation 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes loading-animation {
+  0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+  }
+  100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .weekdays-header div {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .calendar-day {
+    padding: 0.25rem;
+  }
+
+  .day-number {
+    font-size: 0.8rem;
+  }
+}
+
+/* Attendance Overview Styles */
+.attendance-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+}
+
+.stats-row {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.stat-item {
+    text-align: center;
+    position: relative;
+    flex: 1;
+}
+
+.stat-circle {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.stat-circle:hover {
+    transform: scale(1.1);
+}
+
+.progress-ring {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    transform: rotate(-90deg);
+}
+
+.progress-ring-circle {
+    fill: transparent;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+.overall .progress-ring-circle {
+    stroke: #6c5ce7;
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: calc(339.292 * (1 - 0.85));
+}
+
+.month .progress-ring-circle {
+    stroke: #2ecc71;
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: calc(339.292 * (1 - 0.92));
+}
+
+.required .progress-ring-circle {
+    stroke: #3498db;
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: calc(339.292 * (1 - 0.89));
+}
+
+.attendance-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.detail-item {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background: white;
+}
+
+.detail-label {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.detail-value {
+    font-weight: bold;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .stats-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat-circle {
+        width: 100px;
+        height: 100px;
+    }
+
+    .progress-ring {
+        width: 100px;
+        height: 100px;
+    }
+
+    .attendance-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Semester Calendar Styles */
+.semester-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+    min-height: 500px;
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    min-width: 75vw;
+}
+
+.semester-month {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.semester-month:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.month-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--profile-primary-color);
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 1rem;
+}
+
+.month-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.semester-event {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    background: #f8f9fa;
+    transition: transform 0.2s ease;
+}
+
+.semester-event:hover {
+    transform: translateX(5px);
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.event-date {
+    background: var(--profile-primary-color);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    min-width: 28px;
+    text-align: center;
+}
+
+.event-name {
+    flex-grow: 1;
+    font-size: 0.9rem;
+}
+
+.event-time {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Event type styles */
+.semester-event.exam {
+    border-left: 3px solid #f1c40f;
+    border-left: 4px solid #f1c40f;
+}
+
+.semester-event.lab-assessment {
+    border-left: 3px solid #e74c3c;
+    border-left: 4px solid #e74c3c;
+}
+
+.semester-event.review {
+    border-left: 3px solid #3498db;
+    border-left: 4px solid #3498db;
+}
+
+.semester-event.event {
+    border-left: 3px solid #2ecc71;
+    border-left: 4px solid #2ecc71;
+}
+
+/* Calendar View Toggle Buttons */
+.btn-secondary, .btn-outline-secondary {
+    transition: all 0.3s ease;
+}
+
+.btn-secondary.active {
+    background: var(--profile-primary-color);
+    border-color: var(--profile-primary-color);
+    box-shadow: 0 2px 8px rgba(108, 92, 231, 0.3);
+}
+
+.btn-outline-secondary.active {
+    background: var(--profile-primary-color);
+    border-color: var(--profile-primary-color);
+    color: white;
+    box-shadow: 0 2px 8px rgba(108, 92, 231, 0.3);
+}
+
+/* Semester View Updates */
+.semester-view {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.calendar-section.semester-mode .weekdays-header,
+.calendar-section.semester-mode .calendar-navigation {
+    display: none;
+}
+
+.semester-month {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: fit-content;
+}
+
+.month-content {
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    padding-right: 0.5rem;
+}
+
+.month-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.month-content::-webkit-scrollbar-thumb {
+    background: var(--profile-primary-color);
+    border-radius: 4px;
+}
+
+@media (max-width: 1200px) {
+    .semester-view {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .semester-view {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Updated Semester View Styles */
+.semester-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 1.5rem;
+}
+
+.semester-block {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.semester-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.semester-header h3 {
+    font-size: 1.4rem;
+    color: var(--profile-primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.semester-header p {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.semester-months {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.semester-month {
+    margin-bottom: 0;
+    height: auto;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.month-content {
+    max-height: 300px;
+}
+
+@media (max-width: 1200px) {
+    .semester-view {
+        grid-template-columns: 1fr;
+    }
+    
+    .semester-block {
+        margin-bottom: 2rem;
+    }
+}
+
+/* ...existing code... */
+
+.semester-event.final-exams {
+    background: rgba(244, 67, 54, 0.1);
+    border-left: 4px solid #f44336;
+}
+
+.semester-event.final-exams .event-time {
+    color: #f44336;
+    font-weight: 500;
+}
+
+.upcoming-activities .list-group-item .badge.bg-danger {
+    background-color: #f44336 !important;
+}
+
+.upcoming-activities .list-group-item:hover {
+    transform: translateX(5px);
+    background: rgba(244, 67, 54, 0.05);
+}
+
+/* ...existing code... */
+
+/* Activity Stats Styles */
+.activity-stats {
+    padding: 0.5rem;
+}
+
+.last-login {
+    padding: 0.5rem;
+    background: rgba(108, 92, 231, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.last-login:hover {
+    transform: translateX(5px);
+}
+
+.time-progress {
+    height: 8px;
+    background-color: rgba(108, 92, 231, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.time-progress .progress-bar {
+    background: linear-gradient(90deg, var(--profile-primary-color) 0%, #8675e9 100%);
+    transition: width 1s ease;
+}
+
+.activity-item {
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.activity-item:hover {
+    background-color: rgba(108, 92, 231, 0.05);
+    transform: translateX(5px);
+}
+
+.activity-progress {
+    height: 6px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.activity-progress .progress-bar {
+    transition: width 0.8s ease;
+}
+
+.activity-progress .bg-info {
+    background: linear-gradient(90deg, #3498db 0%, #45aaf2 100%) !important;
+}
+
+.activity-progress .bg-success {
+    background: linear-gradient(90deg, #2ecc71 0%, #4cd137 100%) !important;
+}
+
+.activity-progress .bg-warning {
+    background: linear-gradient(90deg, #f1c40f 0%, #ffd32a 100%) !important;
+}
+
+/* Animate progress bars on load */
+@keyframes progressFill {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.progress-bar {
+    animation: progressFill 1s ease-out;
+}
+
+/* Last Login Stats Styles */
+.last-login-stats {
+    padding: 0.5rem;
+}
+
+.time-stat, .activity-item {
+    background: rgba(108, 92, 231, 0.03);
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.time-stat:hover, .activity-item:hover {
+    background: rgba(108, 92, 231, 0.08);
+    transform: translateX(5px);
+}
+
+.stat-label {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.stat-value {
+    font-weight: 500;
+}
+
+.time-progress, .activity-progress {
+    height: 6px;
+    background-color: rgba(108, 92, 231, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.time-progress .progress-bar {
+    background: linear-gradient(90deg, var(--profile-primary-color) 0%, #8675e9 100%);
+    transition: width 1s ease;
+}
+
+.activity-progress .progress-bar {
+    transition: width 0.8s ease;
+}
+
+.activity-progress .bg-success {
+    background: linear-gradient(90deg, #2ecc71 0%, #4cd137 100%) !important;
+}
+
+.activity-progress .bg-info {
+    background: linear-gradient(90deg, #3498db 0%, #45aaf2 100%) !important;
+}
+
+.activity-progress .bg-warning {
+    background: linear-gradient(90deg, #f1c40f 0%, #ffd32a 100%) !important;
+}
+
+/* Progress bar animation */
+@keyframes progressFill {
+    from { width: 0; }
+    to { width: var(--progress-width); }
+}
+
+.progress-bar {
+    animation: progressFill 1s ease-out forwards;
+}
+
+/* ...existing code... */
