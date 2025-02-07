@@ -17,8 +17,8 @@
 }
 
 .avatar {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 50px;
   background: white;
   color: var(--profile-primary-color);
   border-radius: 50%;
@@ -427,7 +427,7 @@
     transform: scale(1.1);
 }
 
-.progress-ring {
+.progress-ring-profile {
     position: absolute;
     width: 120px;
     height: 120px;
@@ -859,13 +859,21 @@
     transform: translateX(5px);
 }
 
-.stat-label {
+.stat-label-log-head {
+     color: #666;
+    font-size: 1.1rem;
+}
+.stat-label-profile {
     color: #666;
     font-size: 0.9rem;
 }
 
-.stat-value {
+.stat-value-profile {
     font-weight: 500;
+}
+.stat-value-login {
+    font-weight: 600;
+    font-size: 2rem;
 }
 
 .time-progress, .activity-progress {
@@ -956,7 +964,6 @@
     animation: progressFill 1s ease-out forwards;
 }
 
-/* ...existing code... */
 
 /* Address field specific styles */
 .address-group {

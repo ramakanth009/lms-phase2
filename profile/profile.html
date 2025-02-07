@@ -1,332 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile</title>
-</head>
-
-<body>
-  <!-- Profile Section -->
-  <!-- Profile section with updated layout -->
-  <div class="container" id="profile">
-    <div class="user-profile row">
-      <!-- Profile Form Section (Left Side) -->
-      <div class="col-md-8">
-        <form class="profile-form" id="profileForm">
-          <div class="profile-card rounded-3 mb-4 shadow-sm bg-white">
-            <div class="profile-header d-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center gap-3">
-                <div class="avatar">RK</div>
-                <div class="profile-info">
-                  <input class="fs-4 fw-semibold" disabled id="name" type="text" value="Ramakanth Kannuri">
-                  <input class="opacity-75" disabled id="email" type="email" value="ramakanthkannuri@gmail.com">
+  <body>
+    <!-- Profile Section -->
+    <!-- Profile section with updated layout -->
+    <div class="container" id="profile">
+      <div class="user-profile row">
+        <!-- Profile Form Section (Left Side) -->
+        <div class="col-md-8">
+          <form class="profile-form" id="profileForm">
+            <div class="profile-card rounded-3 mb-4 shadow-sm bg-white">
+              <div
+                class="profile-header d-flex align-items-center justify-content-between"
+              >
+                <div class="d-flex align-items-center gap-3">
+                  <div class="avatar">RK</div>
+                  <div class="profile-info">
+                    <input
+                      class="fs-4 fw-semibold"
+                      disabled
+                      id="name"
+                      type="text"
+                      value="Ramakanth Kannuri"
+                    />
+                    <input
+                      class="opacity-75"
+                      disabled
+                      id="email"
+                      type="email"
+                      value="ramakanthkannuri@gmail.com"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div class="attendance-metrics d-flex gap-4">
-                <div class="text-center">
-                  <div class="fs-3 fw-bold">85%</div>
-                  <div class="small opacity-75">Overall Attendance</div>
-                </div>
-                <div class="text-center">
-                  <div class="fs-3 fw-bold">92%</div>
-                  <div class="small opacity-75">This Semester</div>
-                </div>
-                <button class="edit-btn btn" id="editButton" type="button">Edit Profile</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Information Grid -->
-          <div class="row">
-            <!-- Basic Information -->
-            <div class="col-md-6 mb-4">
-              <div class="info-section p-3 rounded-3 shadow-sm bg-white">
-                <h3 class="fs-5 fw-semibold mb-2 border-bottom pb-2">Basic Information</h3>
-                <div class="mb-3">
-                  <!-- Basic info fields -->
-                  <div class="info-group">
-                    <label>Roll No:</label>
-                    <input class="form-control-plaintext text-end" disabled id="phone" type="tel" value="13TQ1A0461">
+                <div class="attendance-metrics d-flex gap-4">
+                  <div class="text-center">
+                    <div class="fs-3 fw-bold">85%</div>
+                    <div class="small opacity-75">Overall Attendance</div>
                   </div>
-                  <div class="info-group">
-                    <label>Branch:</label>
-                    <input class="form-control-plaintext text-end" disabled id="branch" type="text"
-                      value="Computer Science">
+                  <div class="text-center">
+                    <div class="fs-3 fw-bold">92%</div>
+                    <div class="small opacity-75">This Semester</div>
                   </div>
-                  <div class="info-group">
-                    <label>Year:</label>
-                    <input class="form-control-plaintext text-end" disabled id="year" type="text" value="4rd Year">
-                  </div>
-                  <div class="info-group">
-                    <label>Phone:</label>
-                    <input class="form-control-plaintext text-end" disabled id="phone" type="tel"
-                      value="+91 9876543210">
-                  </div>
+                  <button class="edit-btn btn" id="editButton" type="button">
+                    Edit Profile
+                  </button>
                 </div>
               </div>
             </div>
 
-            <!-- Additional Information -->
-            <div class="col-md-6 mb-4">
-              <div class="info-section p-3 rounded-3 shadow-sm bg-white">
-                <h3 class="fs-5 fw-semibold mb-2 border-bottom pb-2">Additional Information</h3>
-                <div class="mb-3">
-                  <!-- Additional info fields -->
-                  <div class="info-group">
-                    <label>DOB:</label>
-                    <input class="form-control-plaintext text-end" disabled id="dob" type="text" value="29 Feb 1988">
+            <!-- Information Grid -->
+            <div class="row">
+              <!-- Basic Information -->
+              <div class="col-md-6 mb-4">
+                <div class="info-section p-3 rounded-3 shadow-sm bg-white">
+                  <h3 class="fs-5 fw-semibold mb-2 border-bottom pb-2">
+                    Basic Information
+                  </h3>
+                  <div class="mb-3">
+                    <!-- Basic info fields -->
+                    <div class="info-group">
+                      <label>Roll No:</label>
+                      <input
+                        class="form-control-plaintext text-end"
+                        disabled
+                        id="phone"
+                        type="tel"
+                        value="13TQ1A0461"
+                      />
+                    </div>
+                    <div class="info-group">
+                      <label>Branch:</label>
+                      <input
+                        class="form-control-plaintext text-end"
+                        disabled
+                        id="branch"
+                        type="text"
+                        value="Computer Science"
+                      />
+                    </div>
+                    <div class="info-group">
+                      <label>Year:</label>
+                      <input
+                        class="form-control-plaintext text-end"
+                        disabled
+                        id="year"
+                        type="text"
+                        value="4rd Year"
+                      />
+                    </div>
+                    <div class="info-group">
+                      <label>Phone:</label>
+                      <input
+                        class="form-control-plaintext text-end"
+                        disabled
+                        id="phone"
+                        type="tel"
+                        value="+91 9876543210"
+                      />
+                    </div>
                   </div>
-                  <div class="info-group">
-                    <label>Nationality:</label>
-                    <input class="form-control-plaintext text-end" disabled id="nationality" type="text" value="Indian">
-                  </div>
-                  <div class="info-group address-group">
-                    <label>Address:</label>
-                    <textarea class="form-control-plaintext text-end" disabled id="address" rows="3">H.No: 12-34/A,
-Madhapur, Near Inorbit Mall,
-Hyderabad, Telangana, 500081</textarea>
+                </div>
+              </div>
+
+              <!-- Additional Information -->
+              <div class="col-md-6 mb-4">
+                <div class="info-section p-3 rounded-3 shadow-sm bg-white">
+                  <h3 class="fs-5 fw-semibold mb-2 border-bottom pb-2">
+                    Additional Information
+                  </h3>
+                  <div class="mb-3">
+                    <!-- Additional info fields -->
+                    <div class="info-group">
+                      <label>DOB:</label>
+                      <input
+                        class="form-control-plaintext text-end"
+                        disabled
+                        id="dob"
+                        type="text"
+                        value="29 Feb 1988"
+                      />
+                    </div>
+                    <div class="info-group">
+                      <label>Nationality:</label>
+                      <input
+                        class="form-control-plaintext text-end"
+                        disabled
+                        id="nationality"
+                        type="text"
+                        value="Indian"
+                      />
+                    </div>
+                    <div class="info-group address-group">
+                      <label>Address:</label>
+                      <textarea class="form-control-plaintext text-end" disabled id="address" rows="5" style="min-width: 220px;">H.No: 12-34/A, Madhapur, Near Inorbit Mall,Hyderabad, Telangana, 500081</textarea>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
-      </div>
-
-      <!-- System Activity Section (Right Side) -->
-      <div class="col-md-4">
-        <div class="info-section p-3 rounded-3 shadow-sm bg-white">
-          <h3 class="fs-5 fw-semibold mb-2 border-bottom pb-2">System Activity</h3>
-          <div class="last-login-stats">
-            <!-- System activity content -->
-            <div class="time-stat mb-3">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="stat-label">Last Login</span>
-                <small class="stat-value text-primary">23 Jan, 10:45 AM</small>
-              </div>
-
-            </div>
-
-            <div class="activity-item mb-3">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <span>Today's Activity</span>
-                <span class="text-success">2.5 hrs</span>
-              </div>
-              <div class="activity-progress">
-                <div class="progress-bar bg-success" style="width: 65%; --progress-width: 65%;"></div>
-              </div>
-            </div>
-
-            <div class="activity-item mb-3">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <span>Weekly Average</span>
-                <span class="text-info">18.5 hrs</span>
-              </div>
-              <div class="activity-progress">
-                <div class="progress-bar bg-info" style="width: 75%; --progress-width: 75%;"></div>
-              </div>
-            </div>
-
-            <div class="activity-item">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <span>Total Time Spent</span>
-                <span class="text-warning">164.2 hrs</span>
-              </div>
-              <div class="activity-progress">
-                <div class="progress-bar bg-warning" style="width: 90%; --progress-width: 90%;"></div>
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
-      </div>
-    </div>
-  </div>
 
-
-  <!-- Success Message -->
-  <div class="alert alert-success position-fixed top-0 end-0 m-3 d-none" id="successMessage" role="alert">
-    Profile updated successfully!
-  </div>
-
-  <!-- Calendar Section -->
-  <div class="calendar-section bg-white rounded-3 shadow-sm p-4">
-    <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <div>
-        <h3 class="fs-4 fw-semibold mb-1">Academic Calendar</h3>
-        <p class="text-muted small mb-0">Track your academic schedule and attendance</p>
-      </div>
-      <div class="d-flex gap-2">
-        <button class="btn btn-secondary active">Month</button>
-        <button class="btn btn-outline-secondary">Semester</button>
-        <div class="dropdown">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-            <i class="fas fa-filter me-1"></i> Filter
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" data-filter="attendance">Attendance</a></li>
-            <li><a class="dropdown-item" href="#" data-filter="exams">Exams</a></li>
-            <li><a class="dropdown-item" href="#" data-filter="events">Events</a></li>
-            <li><a class="dropdown-item" href="#" data-filter="practical">Practical</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Calendar Navigation -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <button class="btn btn-link text-decoration-none" id="prevMonth">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <h4 class="mb-0 fw-semibold" id="currentMonth">February 2025</h4>
-      <button class="btn btn-link text-decoration-none" id="nextMonth">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-    </div>
-
-    <!-- Calendar Grid -->
-    <div class="calendar-grid mb-4">
-      <div class="weekdays-header">
-        <div>Sun</div>
-        <div>Mon</div>
-        <div>Tue</div>
-        <div>Wed</div>
-        <div>Thu</div>
-        <div>Fri</div>
-        <div>Sat</div>
-      </div>
-      <div class="calendar-days" id="calendarDays"></div>
-    </div>
-
-    <!-- Legend -->
-    <div class="legend-section mb-4">
-      <h5 class="fs-6 mb-2">Legend</h5>
-      <div class="d-flex flex-wrap gap-3">
-        <div class="legend-item">
-          <span class="legend-dot present"></span>
-          <span>Present</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-dot absent"></span>
-          <span>Absent</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-dot event"></span>
-          <span>Events</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-dot exam"></span>
-          <span>Exams</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-dot practical"></span>
-          <span>Practical</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Attendance Overview -->
-    <div class="row g-4">
-      <div class="col-md-6">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title mb-4">Attendance Overview</h5>
-            <div class="attendance-stats mb-4">
-              <div class="stats-row">
-                <div class="stat-item">
-                  <div class="stat-circle overall">
-                    <div class="stat-value">85%</div>
-                    <svg class="progress-ring">
-                      <circle class="progress-ring-circle" cx="60" cy="60" r="54"></circle>
-                    </svg>
-                  </div>
-                  <div class="stat-label">Overall</div>
+        <!-- System Activity Section (Right Side) -->
+        <div class="col-md-4">
+          <div class="info-section p-3 rounded-3 shadow-sm bg-white">
+            <h3 class="fs-5 fw-semibold mb-2 border-bottom pb-2">
+              System Activity
+            </h3>
+            <div class="last-login-stats">
+              <!-- System activity content -->
+              <div class="time-stat mb-3">
+                <div
+                  class="d-flex flex-column justify-content-between align-items-center mb-2 mt-2 "
+                >
+                  <span class="stat-label-log-head">Last Login</span>
+                  <small class="stat-value-login text-primary"
+                    >23 Jan, 10:45 AM</small
+                  >
                 </div>
-                <div class="stat-item">
-                  <div class="stat-circle month">
-                    <div class="stat-value">92%</div>
-                    <svg class="progress-ring">
-                      <circle class="progress-ring-circle" cx="60" cy="60" r="54"></circle>
-                    </svg>
-                  </div>
-                  <div class="stat-label">This Month</div>
+              </div>
+
+              <div class="activity-item mb-3">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-1"
+                >
+                  <span>Today's Activity</span>
+                  <span class="text-success">2.5 hrs</span>
                 </div>
-                <div class="stat-item">
-                  <div class="stat-circle required">
-                    <div class="stat-value">89%</div>
-                    <svg class="progress-ring">
-                      <circle class="progress-ring-circle" cx="60" cy="60" r="54"></circle>
-                    </svg>
-                  </div>
-                  <div class="stat-label">Required</div>
+                <div class="activity-progress">
+                  <div
+                    class="progress-bar bg-success"
+                    style="width: 65%; --progress-width: 65%"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="activity-item mb-3">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-1"
+                >
+                  <span>Weekly Average</span>
+                  <span class="text-info">18.5 hrs</span>
+                </div>
+                <div class="activity-progress">
+                  <div
+                    class="progress-bar bg-info"
+                    style="width: 75%; --progress-width: 75%"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="activity-item">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-1"
+                >
+                  <span>Total Time Spent</span>
+                  <span class="text-warning">164.2 hrs</span>
+                </div>
+                <div class="activity-progress">
+                  <div
+                    class="progress-bar bg-warning"
+                    style="width: 90%; --progress-width: 90%"
+                  ></div>
                 </div>
               </div>
             </div>
-            <div class="attendance-details">
-              <div class="detail-item">
-                <span class="detail-label">Total Classes</span>
-                <span class="detail-value">120</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Classes Attended</span>
-                <span class="detail-value">102</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Classes Missed</span>
-                <span class="detail-value text-danger">18</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Leave Balance</span>
-                <span class="detail-value text-warning">2</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title mb-4">Attendance Trend</h5>
-            <canvas id="attendanceChart" height="200"></canvas>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Upcoming Activities -->
-    <div class="upcoming-activities mt-4">
-      <h5 class="mb-3">Upcoming Activities</h5>
-      <div class="list-group">
-        <div class="list-group-item d-flex justify-content-between align-items-center">
-          <div>
-            <div class="fw-medium">Mid-term Examination</div>
-            <small class="text-muted">Mathematics - Unit 3</small>
-          </div>
-          <span class="badge bg-warning text-dark">Feb 15</span>
+    <!-- Success Message -->
+    <div
+      class="alert alert-success position-fixed top-0 end-0 m-3 d-none"
+      id="successMessage"
+      role="alert"
+    >
+      Profile updated successfully!
+    </div>
+
+    <!-- Calendar Section -->
+    <div class="calendar-section bg-white rounded-3 shadow-sm p-4">
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h3 class="fs-4 fw-semibold mb-1">Academic Calendar</h3>
+          <p class="text-muted small mb-0">
+            Track your academic schedule and attendance
+          </p>
         </div>
-        <div class="list-group-item d-flex justify-content-between align-items-center">
-          <div>
-            <div class="fw-medium">Technical Symposium</div>
-            <small class="text-muted">College Event</small>
+        <div class="d-flex gap-2">
+          <button class="btn btn-secondary active">Month</button>
+          <button class="btn btn-outline-secondary">Semester</button>
+          <div class="dropdown">
+            <button
+              class="btn btn-outline-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+            >
+              <i class="fas fa-filter me-1"></i> Filter
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#" data-filter="attendance"
+                  >Attendance</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" data-filter="exams">Exams</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" data-filter="events"
+                  >Events</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" data-filter="practical"
+                  >Practical</a
+                >
+              </li>
+            </ul>
           </div>
-          <span class="badge bg-primary">Feb 20</span>
         </div>
-        <div class="list-group-item d-flex justify-content-between align-items-center">
-          <div>
-            <div class="fw-medium">Lab Assessment</div>
-            <small class="text-muted">Computer Networks</small>
+      </div>
+
+      <!-- Calendar Navigation -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <button class="btn btn-link text-decoration-none" id="prevMonth">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <h4 class="mb-0 fw-semibold" id="currentMonth">February 2025</h4>
+        <button class="btn btn-link text-decoration-none" id="nextMonth">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- Calendar Grid -->
+      <div class="calendar-grid mb-4">
+        <div class="weekdays-header">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+        </div>
+        <div class="calendar-days" id="calendarDays"></div>
+      </div>
+
+      <!-- Legend -->
+      <div class="legend-section mb-4">
+        <h5 class="fs-6 mb-2">Legend</h5>
+        <div class="d-flex flex-wrap gap-3">
+          <div class="legend-item">
+            <span class="legend-dot present"></span>
+            <span>Present</span>
           </div>
-          <span class="badge bg-orange">Feb 22</span>
+          <div class="legend-item">
+            <span class="legend-dot absent"></span>
+            <span>Absent</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot event"></span>
+            <span>Events</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot exam"></span>
+            <span>Exams</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot practical"></span>
+            <span>Practical</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attendance Overview -->
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-4">Attendance Overview</h5>
+              <div class="attendance-stats mb-4">
+                <div class="stats-row">
+                  <div class="stat-item">
+                    <div class="stat-circle overall">
+                      <div class="stat-value-profile">85%</div>
+                      <svg class="progress-ring-profile">
+                        <circle
+                          class="progress-ring-circle"
+                          cx="60"
+                          cy="60"
+                          r="54"
+                        ></circle>
+                      </svg>
+                    </div>
+                    <div class="stat-label-profile">Overall</div>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-circle month">
+                      <div class="stat-value-profile">92%</div>
+                      <svg class="progress-ring-profile">
+                        <circle
+                          class="progress-ring-circle"
+                          cx="60"
+                          cy="60"
+                          r="54"
+                        ></circle>
+                      </svg>
+                    </div>
+                    <div class="stat-label-profile">This Month</div>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-circle required">
+                      <div class="stat-value-profile">89%</div>
+                      <svg class="progress-ring-profile">
+                        <circle
+                          class="progress-ring-circle"
+                          cx="60"
+                          cy="60"
+                          r="54"
+                        ></circle>
+                      </svg>
+                    </div>
+                    <div class="stat-label-profile">Required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="attendance-details">
+                <div class="detail-item">
+                  <span class="detail-label">Total Classes</span>
+                  <span class="detail-value">120</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Classes Attended</span>
+                  <span class="detail-value">102</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Classes Missed</span>
+                  <span class="detail-value text-danger">18</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Leave Balance</span>
+                  <span class="detail-value text-warning">2</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-4">Attendance Trend</h5>
+              <canvas id="attendanceChart" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Activities -->
+      <div class="upcoming-activities mt-4">
+        <h5 class="mb-3">Upcoming Activities</h5>
+        <div class="list-group">
+          <div
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <div>
+              <div class="fw-medium">Mid-term Examination</div>
+              <small class="text-muted">Mathematics - Unit 3</small>
+            </div>
+            <span class="badge bg-warning text-dark">Feb 15</span>
+          </div>
+          <div
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <div>
+              <div class="fw-medium">Technical Symposium</div>
+              <small class="text-muted">College Event</small>
+            </div>
+            <span class="badge bg-primary">Feb 20</span>
+          </div>
+          <div
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <div>
+              <div class="fw-medium">Lab Assessment</div>
+              <small class="text-muted">Computer Networks</small>
+            </div>
+            <span class="badge bg-orange">Feb 22</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="profile.js"></script>
-
-</body>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="profile.js"></script>
+  </body>
 </html>
