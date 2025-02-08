@@ -3,6 +3,7 @@ const sectionPaths = {
     'dashboard': 'dashboard/dashboard.html',
     'profile': 'profile/profile.html',
     'curriculum': 'curriculam/curriculam.html',
+    'rolecontent': 'curriculam/rolecontent.html',
     'assessments': 'assessments/assessments.html',
     'ai-quiz': 'aiquiz/aiquiz.html',
     'blog': 'blog/blog.html',
@@ -110,99 +111,42 @@ function initializeDashboard() {
   });
 }
 
-// Initialize Curriculum Section
-function initializeCurriculum() {
-    // Branch Selection
-    document.querySelectorAll(".dropdown-item[data-branch]").forEach((item) => {
-        item.addEventListener("click", function(e) {
-            e.preventDefault();
-            const selectedBranch = this.getAttribute("data-branch");
-            
-            // Update branch button text
-            const branchButton = document.getElementById("dropdown-branch-button");
-            branchButton.textContent = selectedBranch;
-            
-            // Show second dropdown
-            const secondDropdown = document.getElementById("second-dropdown-container");
-            secondDropdown.style.display = "block";
-            
-            // Reset subject button text
-            document.getElementById("dropdown-subject-button").textContent = "Indicate Job Preference";
-            
-            // Hide all job roles first
-            document.querySelectorAll(".job-roles").forEach(list => {
-                list.classList.add("d-none");
-            });
-            
-            // Show relevant job roles
-            // Use the exact ID format from HTML
-            const targetRoles = document.getElementById(`${selectedBranch}-roles`);
-            if (targetRoles) {
-                targetRoles.classList.remove("d-none");
-            }
-            
-            // Clear previous content
-            const contentDisplay = document.getElementById("content-display");
-            contentDisplay.style.display = "none";
-            contentDisplay.innerHTML = "";
-        });
-    });
 
-    // Role Selection
-    document.querySelectorAll(".dropdown-item[data-role]").forEach((item) => {
-        item.addEventListener("click", function(e) {
-            e.preventDefault();
-            const selectedRole = this.getAttribute("data-role");
-            const content = jobDescriptions[selectedRole];
-            const contentDisplay = document.getElementById("content-display");
-            
-            // Update subject button text
-            document.getElementById("dropdown-subject-button").textContent = selectedRole;
-
-            if (content) {
-                contentDisplay.innerHTML = generateRoleHTML(content);
-                contentDisplay.style.display = "block";
-            } else {
-                contentDisplay.innerHTML = '<div class="alert alert-warning">Job role details not found.</div>';
-                contentDisplay.style.display = "block";
-            }
-        });
-    });
-}
 
 // Helper function to generate role HTML
-function generateRoleHTML(content) {
-    return `
-        <div class="role-card">
-            <div class="role-header">
-                <h2 class="role-title">Job Title: ${content.title || "Role Title Not Available"}</h2>
-            </div>
-            ${content.note ? `<div class="role-note"><i class="fas fa-info-circle"></i> ${content.note}</div>` : ""}
-            ${content.description ? `
-                <div class="description-section mb-4">
-                    <h4 class="mb-2">Job Description</h4>
-                    <p>${content.description}</p>
-                </div>` : ""
-            }
-            ${content.sectionDescription ? `
-                <div class="section-description mb-4">
-                    <h4 class="mb-2">Overview</h4>
-                    <p>${content.sectionDescription}</p>
-                </div>` : ""
-            }
-            <div class="skills-section">
-                <h4 class="mb-3">Required Skills</h4>
-                <div class="skills-container">
-                    ${content.skills.map(skill => `
-                        <div class="skill-badge">
-                            <i class="fas fa-check-circle"></i>
-                            ${skill}
-                        </div>
-                    `).join("")}
-                </div>
-            </div>
-        </div>`;
-}
+// function generateRoleHTML(content) {
+//     return `
+//         <div class="role-card">
+//             <div class="role-header">
+//                 <h2 class="role-title">Job Title: ${content.title || "Role Title Not Available"}</h2>
+//             </div>
+//             ${content.note ? `<div class="role-note"><i class="fas fa-info-circle"></i> ${content.note}</div>` : ""}
+//             ${content.description ? `
+//                 <div class="description-section mb-4">
+//                     <h4 class="mb-2">Job Description</h4>
+//                     <p>${content.description}</p>
+//                 </div>` : ""
+//             }
+//             ${content.sectionDescription ? `
+//                 <div class="section-description mb-4">
+//                     <h4 class="mb-2">Overview</h4>
+//                     <p>${content.sectionDescription}</p>
+//                 </div>` : ""
+//             }
+//             <div class="skills-section">
+//                 <h4 class="mb-3">Required Skills</h4>
+//                 <div class="skills-container">
+//                     ${content.skills.map(skill => `
+//                         <div class="skill-badge">
+//                             <i class="fas fa-check-circle"></i>
+//                             ${skill}
+//                         </div>
+//                     `).join("")}
+//                 </div>
+//             </div>
+//         </div>`;
+// }
+
 
 // Update initializeAssessment function
 function initializeAssessment() {
@@ -374,5 +318,12 @@ function updateNotificationBadge() {
     } else {
         badge.style.display = 'block';
         badge.textContent = unreadCount;
+    }
+}
+
+// In script.js
+function initializeCurriculum() {
+    if (document.querySelector('.curriculum-container')) {
+        new RoleContentManager();
     }
 }

@@ -1,180 +1,209 @@
-.role-card {
-  background: white;
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin-top: 1.5rem;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+.curriculum-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
-.role-header {
-  border-bottom: 2px solid var(--primary-color);
-  padding-bottom: 1rem;
-  margin-bottom: 1.5rem;
+.curriculum-header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #8e44ad 100%);
+  color: white;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
 }
 
-.role-title {
-  color: var(--primary-color);
-  font-size: 1.5rem;
+.curriculum-title {
+  font-size: 2.5rem;
   font-weight: 600;
-  margin: 0;
 }
 
-.role-note {
-  background: #f3f1ff;
-  color: var(--primary-color);
-  padding: 0.75rem 1.25rem;
-  border-radius: 8px;
-  margin: 1rem 0;
-  display: inline-block;
-  font-size: 0.9rem;
+.curriculum-subtitle {
+  font-size: 1.2rem; /* Updated to 1.2rem */
+  opacity: 0.9;
 }
 
-.skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.skill-badge {
-  background: var(--secondary-bg);
-  border: 1px solid #e0e0e0;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-}
-
-.skill-badge i {
-  color: var(--primary-color);
-  font-size: 0.8rem;
-}
-
-.curriculum-intro {
-  padding: 1.5rem;
-  display: none;
-}
-
-.intro-card {
+.curriculum-select {
   background: white;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
 }
 
-.intro-header {
+.curriculum-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(108, 92, 231, 0.25);
+  border-color: var(--primary-color);
+}
+
+.curriculum-card {
+  background: white;
+  border: none;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+  height: 100%;
+}
+
+.curriculum-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.curriculum-icon {
+  background: var(--primary-color);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 1rem;
 }
 
-.intro-icon {
-  background: #f3f0ff;
+.step-indicator {
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.step-content {
+  transition: all 0.3s ease;
+}
+
+.step-highlight {
+  background: #f0f0ff;
   padding: 1rem;
-  border-radius: 50%;
-  margin-right: 1rem;
+  border-radius: 10px;
+  border-left: 4px solid var(--primary-color);
 }
 
-.intro-icon i {
-  color: #6c5ce7;
-  font-size: 1.5rem;
+.curriculum-tip {
+  background: #fff9e6;
+  border-left: 4px solid #ffd700;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 2rem;
 }
 
-.intro-header h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #2d3748;
+.role-select {
+  display: none;
+  margin-top: 1rem;
 }
 
-.info-box {
-  background: #ebf8ff;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.steps-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.step-card {
-  background: #f7fafc;
-  padding: 1rem;
-  border-radius: 0.5rem;
-}
-
-.step-number {
-  color: #6c5ce7;
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.tip-box {
-  background: #fffbeb;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  margin-top: 1.5rem;
-}
-
-.tip-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.message-card, .explore-header {
-  background: #f0f9ff;
-  border-left: 4px solid #6c5ce7;
-  padding: 1rem;
-  border-radius: 0 8px 8px 0;
-  margin: 1.5rem 0;
-  animation: fadeIn 0.3s ease-in;
-}
-
-@keyframes fadeIn {
-  from {
-      opacity: 0;
-      transform: translateY(-10px);
+@media (max-width: 768px) {
+  .curriculum-header {
+      padding: 1.5rem;
   }
-  to {
-      opacity: 1;
-      transform: translateY(0);
+
+  .curriculum-title {
+      font-size: 2rem;
+  }
+
+  .curriculum-select {
+      max-width: 100%;
   }
 }
-
-/* Dropdown styles */
-.dropdown {
-  position: relative;
-  display: inline-block;
+:root {
+  --primary-color: #6c5ce7;
+  --secondary-color: #8e44ad;
+  --light-purple: #f3f0ff;
+  --accent-color: #00b894;
 }
 
-.dropdown-menu {
-  min-width: 200px;
+.curriculum-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
-.dropdown-item {
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-}
-
-.dropdown-item:hover {
-  background-color: var(--primary-color);
+/* Enhanced styles for the career details view */
+.branch-badge {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  transition: transform 0.2s ease;
 }
 
-.btn-secondary {
-  background-color: var(--primary-color);
-  border: none;
-  padding: 0.5rem 1.5rem;
-  min-width: 200px;
+.branch-badge:hover {
+  transform: translateY(-2px);
 }
 
-.btn-secondary:hover {
-  background-color: #5a4dcc;
+.company-badge {
+  background: linear-gradient(135deg, var(--accent-color) 0%, #00cec9 100%);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 15px;
+  display: inline-block;
+  margin: 5px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
 }
+
+.company-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.content-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.job-title {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.job-tag {
+  background-color: var(--light-purple);
+  color: var(--primary-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  margin: 0.5rem 1rem 0.5rem 0;
+}
+
+.job-tag i {
+  margin-right: 8px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem 0;
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--light-purple);
+  padding-bottom: 0.5rem;
+}
+
+.skill-badge {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  padding: 12px 20px;
+  border-radius: 25px;
+  display: inline-flex;
+  align-items: center;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+  background-color: var(--light-purple);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+

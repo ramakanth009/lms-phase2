@@ -18,6 +18,8 @@
     <link href="dashboard/dashboard.css" rel="stylesheet" />
     <link href="profile/profile.css" rel="stylesheet" />
     <link href="curriculam/curriculam.css" rel="stylesheet" />
+    <link href="curriculam/rolecontent.css" rel="stylesheet" />
+    <link href="rolecontent.css" rel="stylesheet" />
     <link href="assessments/assesements.css" rel="stylesheet" />
     <link href="aiquiz/aiquiz.css" rel="stylesheet" />
     <link href="blog/blog.css" rel="stylesheet" />
@@ -25,7 +27,6 @@
     <link href="analytics/analytics.css" rel="stylesheet" />
 </head>
 <body>
-    
     <!-- Sidebar -->
     <div class="sidebar">
         <div>
@@ -38,7 +39,7 @@
                     <i class="fas fa-user-circle"></i> Profile
                 </a>
                 <a class="nav-link" data-target="curriculum">
-                    <i class="fas fa-book"></i> Curriculum
+                    <i class="fas fa-book"></i> Career Path
                 </a>
                 <a class="nav-link" data-target="assessments">
                     <i class="fa-solid fa-puzzle-piece"></i> Assessments
@@ -153,14 +154,17 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js">
+    </script>
     <script src="mockdata.js"></script>
     <script src="assessments/assessmentMetrics.js"></script>
     <script src="script.js"></script>
     <script src="dashboard/dashboard.js"></script>
     <script src="profile/profile.js"></script>
     <script src="curriculam/curriculam.js"></script>
+    <script src="rolecontentmanager.js"></script>
     <script src="assessments/assesments.js"></script>
     <script src="aiquiz/aiquizmanager.js"></script>
     <script src="aiquiz/aiquizchart.js"></script>
@@ -168,5 +172,13 @@
     <script src="gigalibrary/gigalibrary.js"></script>
     <script src="gigalibrary/aiassistant.js"></script>
     <script src="analytics/analytics.js"></script>
+
+    <script src="mockdata2.js"></script>
+
+    <!-- Then load your role content manager -->
+    <script src="curriculam/rolecontentmanager.js"></script>
+
+    <!-- Then load any other dependent scripts -->
+    <script src="script.js"></script>
 </body>
 </html>
