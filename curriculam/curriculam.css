@@ -110,7 +110,7 @@
   --primary-color: #6c5ce7;
   --secondary-color: #8e44ad;
   --light-purple: #f3f0ff;
-  --accent-color: #00b894;
+  --accent-color: #4299e1;
 }
 
 .curriculum-container {
@@ -137,13 +137,14 @@
 }
 
 .company-badge {
-  background: linear-gradient(135deg, var(--accent-color) 0%, #00cec9 100%);
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
   color: white;
   padding: 6px 14px;
   border-radius: 15px;
   display: inline-block;
   margin: 5px;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: bold;
   transition: all 0.3s ease;
 }
 
@@ -406,4 +407,7 @@
 
 .success-message i {
   margin-right: 10px;
+}
+.keypoints{
+  margin-left: 20px;
 }

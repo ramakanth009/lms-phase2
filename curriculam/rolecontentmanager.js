@@ -85,14 +85,14 @@ class RoleContentManager {
                         <div class="col-md-6">
                             <ul class="list-unstyled">
                                 ${details.responsibilities.slice(0, Math.ceil(details.responsibilities.length / 2)).map(resp => `
-                                    <li><i class="fas fa-check-circle text-success me-2"></i>${resp}</li>
+                                    <li><i class="fas fa-check-circle text-success me-2 mb-3 keypoints"></i>${resp}</li>
                                 `).join('')}
                             </ul>
                         </div>
                         <div class="col-md-6">
                             <ul class="list-unstyled">
                                 ${details.responsibilities.slice(Math.ceil(details.responsibilities.length / 2)).map(resp => `
-                                    <li><i class="fas fa-check-circle text-success me-2"></i>${resp}</li>
+                                    <li><i class="fas fa-check-circle text-success me-2 mb-3 keypoints"></i>${resp}</li>
                                 `).join('')}
                             </ul>
                         </div>
@@ -145,23 +145,27 @@ class RoleContentManager {
                     </div>
                 </div>
 
-                <!-- Resources Section -->
-                <div class="content-card">
-                    <div class="section-title">Resources</div>
-                    <div class="row">
-                        ${Object.entries(details.resources).map(([category, items]) => `
-                            <div class="col-md-6">
-                                <h5><i class="fas fa-book-reader me-2"></i>${category}</h5>
-                                <ul class="list-unstyled">
-                                    ${items.map(item => `
-                                        <li><a href="#" class="resource-link">• ${item}</a></li>
-                                    `).join('')}
-                                </ul>
-                            </div>
-                        `).join('')}
-                    </div>
+                <!-- Learning Resources & Communities -->
+            <div class="content-card">
+                <div class="section-title">Resources & Communities</div>
+                <div class="row">
+                    ${Object.entries(details.resources).map(([category, items]) => `
+                        <div class="col-md-6">
+                            <h5><i class="fas fa-book-reader me-2"></i>${category}</h5>
+                            <ul class="list-unstyled">
+                                ${items.map(item => `
+                                    <li>
+                                        <a href="${item.link}" target="_blank" class="resource-link">
+                                            • ${item.name}
+                                        </a>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    `).join('')}
                 </div>
             </div>
+        </div>
         `;
 
         // Initialize hover effects
