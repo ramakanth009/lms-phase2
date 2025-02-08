@@ -1,60 +1,76 @@
-// Define job descriptions globally
 window.jobDescriptions = {
     "Full Stack Developer": {
         branch: "CSE / IT",
         title: "Full Stack Developer",
-        description: "A Full Stack Developer is proficient in both frontend and backend development, capable of handling all aspects of web application development from user interface to server logic and database management.",
-        skills: [
-            "JavaScript/TypeScript",
-            "HTML5 & CSS3",
-            "React/Angular/Vue",
-            "Node.js",
-            "Python/Java",
-            "SQL & NoSQL Databases",
-            "RESTful APIs",
-            "Git & Version Control",
-            "AWS/Azure/GCP"
+        badges: ["Full Stack Development", "Web Development", "Team Collaboration"],
+        quickInfo: [
+            { icon: "fas fa-code", text: "Frontend & Backend" },
+            { icon: "fas fa-clock", text: "$30-60 per hour" },
+            { icon: "fas fa-users", text: "Agile Teams" }
+        ],
+        description: "A Full Stack Developer is responsible for designing, developing, and maintaining both the frontend and backend of web applications. This role involves working with various technologies to create seamless user experiences and robust server-side functionality.",
+        responsibilities: [
+            "Develop user-friendly frontend interfaces",
+            "Design and implement backend APIs",
+            "Optimize applications for performance",
+            "Collaborate with cross-functional teams",
+            "Debug and troubleshoot issues",
+            "Stay updated on emerging technologies"
+        ],
+        technicalSkills: [
+            { icon: "fab fa-html5", name: "HTML/CSS" },
+            { icon: "fab fa-js", name: "JavaScript" },
+            { icon: "fab fa-react", name: "React.js" },
+            { icon: "fab fa-node-js", name: "Node.js" },
+            { icon: "fas fa-database", name: "SQL/NoSQL" },
+            { icon: "fab fa-git", name: "Git & Version Control" }
+        ],
+        softSkills: [
+            { icon: "fas fa-puzzle-piece", name: "Problem-Solving" },
+            { icon: "fas fa-comments", name: "Communication" },
+            { icon: "fas fa-users", name: "Teamwork" },
+            { icon: "fas fa-clock", name: "Time Management" },
+            { icon: "fas fa-sync-alt", name: "Adaptability" }
         ],
         marketTrends: [
             {
-                trend: "Industry Growth",
-                description: "24% projected growth over the next 5 years"
+                icon: "fas fa-chart-bar",
+                title: "High Demand",
+                description: "Full Stack Developers are in high demand across industries, especially in tech startups and SaaS companies."
             },
             {
-                trend: "Salary Range",
-                description: "$70,000 - $150,000 annually based on experience"
+                icon: "fas fa-microchip",
+                title: "Emerging Technologies",
+                description: "Technologies like React, Node.js, and cloud computing are shaping the future of web development."
             },
             {
-                trend: "Remote Work",
-                description: "70% of positions offer remote or hybrid options"
+                icon: "fas fa-globe-americas",
+                title: "Remote Work",
+                description: "Full Stack Developers often have the flexibility to work remotely, making it a popular career choice."
             }
-        ]
+        ],
+        companies: {
+            "Tech Giants": ["Google", "Amazon", "Microsoft"],
+            "Startups": ["Stripe", "Slack", "Zoom"],
+            "E-commerce": ["Shopify", "Etsy", "eBay"]
+        },
+        resources: {
+            "Learning Resources": [
+                "Full Stack Development",
+                "React.js Documentation",
+                "Node.js Tutorials"
+            ],
+            "Communities": [
+                "Stack Overflow",
+                "Reddit r/webdev",
+                "GitHub Developer Community"
+            ]
+        }
     },
+    // Add similar detailed structures for other roles
     "Front-End Developer": {
         branch: "CSE / IT",
         title: "Front-End Developer",
-        description: "Front-End Developers focus on creating responsive and interactive user interfaces, ensuring optimal user experience across different devices and browsers.",
-        skills: [
-            "HTML5 & CSS3",
-            "JavaScript/TypeScript",
-            "React/Vue/Angular",
-            "Responsive Design",
-            "UI/UX Principles",
-            "CSS Frameworks",
-            "Web Performance",
-            "Version Control",
-            "Web Accessibility"
-        ],
-        marketTrends: [
-            {
-                trend: "Industry Growth",
-                description: "20% growth projected in frontend development roles"
-            },
-            {
-                trend: "Technology Trends",
-                description: "Increasing demand for React and TypeScript skills"
-            }
-        ]
+        // Add similar detailed structure...
     }
-    // Add more job descriptions as needed
 };

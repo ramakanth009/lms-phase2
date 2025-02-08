@@ -1,288 +1,179 @@
-// class RoleContentManager {
-//     constructor() {
-//         // Initialize all key elements
-//         this.branchSelect = document.getElementById('branchSelect');
-//         this.roleSelect = document.getElementById('roleSelect');
-//         this.contentContainer = document.querySelector('.role-content-container');
-//         this.selectedRoleSpan = document.getElementById('selectedRole');
-//         this.roleDetailsContent = document.getElementById('roleDetailsContent');
-//         this.curriculumSteps = document.querySelectorAll('.curriculum-card');
-
-//         // Role data by branch
-//         this.rolesByBranch = {
-//             'cs': [
-//                 'Full Stack Developer',
-//                 'Front-End Developer',
-//                 'Back-End Developer',
-//                 'DevOps Engineer',
-//                 'Cloud Engineer',
-//                 'Data Scientist',
-//                 'Machine Learning Engineer'
-//             ]
-//             // Add other branches as needed
-//         };
-
-//         this.initialize();
-//     }
-
-//     initialize() {
-//         console.log('Initializing RoleContentManager...');
-        
-//         // Add event listeners
-//         if (this.branchSelect) {
-//             this.branchSelect.addEventListener('change', (e) => {
-//                 console.log('Branch selected:', e.target.value);
-//                 this.handleBranchChange(e);
-//             });
-//         }
-
-//         if (this.roleSelect) {
-//             this.roleSelect.addEventListener('change', (e) => {
-//                 console.log('Role selected:', e.target.value);
-//                 this.handleRoleChange(e);
-//             });
-//         }
-
-//         // Initial setup
-//         this.setupInitialState();
-//     }
-
-//     setupInitialState() {
-//         // Hide role select initially
-//         if (this.roleSelect) {
-//             this.roleSelect.style.display = 'none';
-//         }
-
-//         // Hide content container initially
-//         if (this.contentContainer) {
-//             this.contentContainer.style.display = 'none';
-//         }
-//     }
-
-//     handleBranchChange(event) {
-//         const selectedBranch = event.target.value;
-//         console.log('Handling branch change:', selectedBranch);
-
-//         if (!selectedBranch) return;
-
-//         // Reset state
-//         if (this.contentContainer) {
-//             this.contentContainer.style.display = 'none';
-//         }
-
-//         // Show and populate role select
-//         if (this.roleSelect) {
-//             this.roleSelect.style.display = 'block';
-//             this.populateRoleSelect(selectedBranch);
-//         }
-
-//         // Show curriculum steps
-//         this.showCurriculumSteps();
-
-//         // Update Step 1 content
-//         const step1Content = document.getElementById('step1Content');
-//         if (step1Content) {
-//             step1Content.innerHTML = `
-//                 <div class="step-highlight">
-//                     <strong>Great choice!</strong>
-//                     <p>You've selected your branch. Now, choose your preferred job role to explore detailed career information.</p>
-//                 </div>`;
-//         }
-//     }
-
-//     handleRoleChange(event) {
-//         const selectedRole = event.target.options[event.target.selectedIndex].text;
-//         console.log('Handling role change:', selectedRole);
-
-//         if (!selectedRole || selectedRole === 'Select Role') return;
-
-//         // Hide curriculum cards
-//         this.hideCurriculumSteps();
-
-//         // Show role content
-//         if (this.contentContainer) {
-//             this.contentContainer.style.display = 'block';
-//         }
-
-//         if (this.selectedRoleSpan) {
-//             this.selectedRoleSpan.textContent = selectedRole;
-//         }
-
-//         // Get and display role details
-//         const roleDetails = this.getRoleDetails(selectedRole);
-//         this.displayRoleDetails(roleDetails);
-//     }
-
-//     populateRoleSelect(branch) {
-//         if (!this.roleSelect) return;
-
-//         // Clear current options
-//         this.roleSelect.innerHTML = '<option value="" selected disabled>Select Role</option>';
-
-//         // Get roles for selected branch
-//         const roles = this.rolesByBranch[branch] || [];
-        
-//         // Add new options
-//         roles.forEach(role => {
-//             const option = document.createElement('option');
-//             option.value = role.toLowerCase().replace(/\s+/g, '-');
-//             option.textContent = role;
-//             this.roleSelect.appendChild(option);
-//         });
-
-//         // Show the select
-//         this.roleSelect.style.display = 'block';
-//     }
-
-//     getRoleDetails(role) {
-//         if (!window.jobDescriptions) {
-//             console.error('Job descriptions data not loaded!');
-//             return null;
-//         }
-
-//         return window.jobDescriptions[role] || {
-//             title: role,
-//             description: `Detailed information for ${role} will be available soon.`,
-//             skills: ["Skill information being updated"],
-//             marketTrends: [
-//                 { trend: "Industry Growth", description: "Information being updated" }
-//             ]
-//         };
-//     }
-
-//     displayRoleDetails(details) {
-//         if (!this.roleDetailsContent || !details) return;
-
-//         this.roleDetailsContent.innerHTML = `
-//             <div class="role-details-grid p-4">
-//                 <div class="details-section mb-4">
-//                     <h4 class="mb-3">Role Description</h4>
-//                     <p class="text-muted">${details.description}</p>
-//                 </div>
-                
-//                 <div class="details-section mb-4">
-//                     <h4 class="mb-3">Required Skills</h4>
-//                     <div class="skills-grid">
-//                         ${details.skills.map(skill => `
-//                             <div class="skill-item p-2 bg-light rounded mb-2">
-//                                 <i class="fas fa-check-circle text-success me-2"></i>
-//                                 ${skill}
-//                             </div>
-//                         `).join('')}
-//                     </div>
-//                 </div>
-                
-//                 ${details.marketTrends ? `
-//                     <div class="details-section">
-//                         <h4 class="mb-3">Market Trends</h4>
-//                         <div class="trends-grid">
-//                             ${details.marketTrends.map(trend => `
-//                                 <div class="trend-item p-3 bg-light rounded mb-3">
-//                                     <h5 class="text-primary">${trend.trend}</h5>
-//                                     <p class="mb-0 text-muted">${trend.description}</p>
-//                                 </div>
-//                             `).join('')}
-//                         </div>
-//                     </div>
-//                 ` : ''}
-//             </div>
-//         `;
-//     }
-
-//     showCurriculumSteps() {
-//         this.curriculumSteps.forEach(card => {
-//             card.style.display = 'block';
-//         });
-//     }
-
-//     hideCurriculumSteps() {
-//         this.curriculumSteps.forEach(card => {
-//             card.style.display = 'none';
-//         });
-//     }
-// }
-
-// // Initialize when DOM is loaded
-// document.addEventListener('DOMContentLoaded', () => {
-//     console.log('Initializing curriculum section...');
-//     const curriculumSection = document.querySelector('.curriculum-container');
-//     if (curriculumSection) {
-//         new RoleContentManager();
-//     }
-// });
 class RoleContentManager {
     constructor() {
-        // Initialize DOM elements
         this.branchSelect = document.getElementById('branchSelect');
         this.roleSelect = document.getElementById('roleSelect');
-        this.stepsSection = document.getElementById('stepsSection');
         this.contentContainer = document.querySelector('.role-content-container');
-        this.selectedRoleSpan = document.getElementById('selectedRole');
         this.roleDetailsContent = document.getElementById('roleDetailsContent');
-        
+
         this.initialize();
     }
 
     initialize() {
-        // Bind event listeners
         if (this.branchSelect) {
             this.branchSelect.addEventListener('change', this.handleBranchChange.bind(this));
         }
         if (this.roleSelect) {
             this.roleSelect.addEventListener('change', this.handleRoleChange.bind(this));
         }
-        
-        // Set initial state
-        this.hideRoleContent();
     }
 
     handleBranchChange(event) {
         const branch = event.target.value;
-        
-        // Reset and show steps
-        this.showSteps();
-        this.hideRoleContent();
-        
-        // Update step 1 content to show selection
-        const step1Content = document.getElementById('step1Content');
-        if (step1Content) {
-            step1Content.innerHTML = `
-                <div class="step-highlight">
-                    <strong>Great choice!</strong>
-                    <p>Branch selected: ${event.target.options[event.target.selectedIndex].text}</p>
-                </div>
-            `;
-        }
+        if (!branch) return;
 
         // Show and populate role select
         this.roleSelect.style.display = 'block';
         this.populateRoles(branch);
+
+        // Hide content container
+        if (this.contentContainer) {
+            this.contentContainer.style.display = 'none';
+        }
     }
 
     handleRoleChange(event) {
         const selectedRole = event.target.options[event.target.selectedIndex].text;
-        
-        // Hide steps and show role content
-        this.hideSteps();
-        this.showRoleContent(selectedRole);
-        
-        // Get and display role details
-        const roleDetails = window.jobDescriptions[selectedRole];
-        if (roleDetails) {
+        if (!selectedRole || selectedRole === 'Select Role') return;
+
+        // Show role content and display details
+        if (this.contentContainer) {
+            this.contentContainer.style.display = 'block';
+            const roleDetails = window.jobDescriptions[selectedRole];
             this.displayRoleDetails(roleDetails);
         }
     }
 
+    displayRoleDetails(details) {
+        if (!this.roleDetailsContent || !details) return;
+        // Hide stepsSection and protip
+        const stepsSection = document.getElementById('stepsSection');
+        const protip = document.getElementById('protip');
+
+        if (stepsSection) stepsSection.style.display = 'none';
+        if (protip) protip.style.display = 'none';
+
+        this.roleDetailsContent.innerHTML = `
+            <div class="container py-5">
+                <!-- Header with Badges -->
+                <div class="d-flex flex-wrap mb-4">
+                    ${details.badges.map(badge => `
+                        <div class="branch-badge">
+                            <i class="fas fa-code me-2"></i>
+                            ${badge}
+                        </div>
+                    `).join('')}
+                </div>
+
+                <!-- Main Content -->
+                <div class="content-card">
+                    <h1 class="job-title">${details.title}</h1>
+                    
+                    <div class="d-flex flex-wrap">
+                        ${details.quickInfo.map(info => `
+                            <div class="job-tag">
+                                <i class="${info.icon}"></i>
+                                ${info.text}
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="section-title">Job Description</div>
+                    <p class="lead text-muted">${details.description}</p>
+
+                    <div class="section-title">Key Responsibilities</div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                ${details.responsibilities.slice(0, Math.ceil(details.responsibilities.length / 2)).map(resp => `
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>${resp}</li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                ${details.responsibilities.slice(Math.ceil(details.responsibilities.length / 2)).map(resp => `
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>${resp}</li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="section-title">Technical Skills Required</div>
+                    <div class="d-flex flex-wrap">
+                        ${details.technicalSkills.map(skill => `
+                            <div class="skill-badge">
+                                <i class="${skill.icon}"></i>
+                                ${skill.name}
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="section-title">Soft Skills</div>
+                    <div class="d-flex flex-wrap">
+                        ${details.softSkills.map(skill => `
+                            <div class="skill-badge">
+                                <i class="${skill.icon}"></i>
+                                ${skill.name}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- Market Trends Section -->
+                <div class="content-card">
+                    <div class="section-title">Market Trends</div>
+                    ${details.marketTrends.map(trend => `
+                        <div class="trend-item">
+                            <h5><i class="${trend.icon} me-2"></i>${trend.title}</h5>
+                            <p>${trend.description}</p>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <!-- Companies Section -->
+                <div class="content-card">
+                    <div class="section-title">Top Companies Hiring</div>
+                    <div class="row text-center">
+                        ${Object.entries(details.companies).map(([category, companies]) => `
+                            <div class="col-md-4 mb-3">
+                                <h5>${category}</h5>
+                                ${companies.map(company => `
+                                    <div class="company-badge">${company}</div>
+                                `).join('')}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="content-card">
+                    <div class="section-title">Resources</div>
+                    <div class="row">
+                        ${Object.entries(details.resources).map(([category, items]) => `
+                            <div class="col-md-6">
+                                <h5><i class="fas fa-book-reader me-2"></i>${category}</h5>
+                                <ul class="list-unstyled">
+                                    ${items.map(item => `
+                                        <li><a href="#" class="resource-link">• ${item}</a></li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Initialize hover effects
+        this.initializeHoverEffects();
+    }
+
     populateRoles(branch) {
-        // Clear current options
         this.roleSelect.innerHTML = '<option value="" disabled selected>Select Role</option>';
-        
-        // Get roles for selected branch
-        const roles = Object.keys(window.jobDescriptions).filter(role => 
+        const roles = Object.keys(window.jobDescriptions).filter(role =>
             window.jobDescriptions[role].branch === (branch === 'cs' ? 'CSE / IT' : branch)
         );
 
-        // Add role options
         roles.forEach(role => {
             const option = document.createElement('option');
             option.value = role.toLowerCase().replace(/\s+/g, '-');
@@ -291,74 +182,24 @@ class RoleContentManager {
         });
     }
 
-    displayRoleDetails(details) {
-        if (!this.roleDetailsContent) return;
+    initializeHoverEffects() {
+        const addHoverEffect = (elements) => {
+            elements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    element.style.transform = 'translateY(-2px)';
+                });
+                element.addEventListener('mouseleave', () => {
+                    element.style.transform = 'translateY(0)';
+                });
+            });
+        };
 
-        this.roleDetailsContent.innerHTML = `
-            <div class="role-details-grid p-4">
-                <div class="details-section mb-4">
-                    <h4 class="mb-3">Role Description</h4>
-                    <p class="text-muted">${details.description}</p>
-                </div>
-                
-                <div class="details-section mb-4">
-                    <h4 class="mb-3">Required Skills</h4>
-                    <div class="skills-grid">
-                        ${details.skills.map(skill => `
-                            <div class="skill-item p-2 bg-light rounded mb-2">
-                                <i class="fas fa-check-circle text-success me-2"></i>
-                                ${skill}
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-                
-                ${details.marketTrends ? `
-                    <div class="details-section">
-                        <h4 class="mb-3">Market Trends</h4>
-                        <div class="trends-grid">
-                            ${details.marketTrends.map(trend => `
-                                <div class="trend-item p-3 bg-light rounded mb-3">
-                                    <h5 class="text-primary">${trend.trend}</h5>
-                                    <p class="mb-0 text-muted">${trend.description}</p>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                ` : ''}
-            </div>
-        `;
-    }
-
-    showSteps() {
-        if (this.stepsSection) {
-            this.stepsSection.style.display = 'flex';
-        }
-    }
-
-    hideSteps() {
-        if (this.stepsSection) {
-            this.stepsSection.style.display = 'none';
-        }
-    }
-
-    showRoleContent(role) {
-        if (this.contentContainer) {
-            this.contentContainer.style.display = 'block';
-        }
-        if (this.selectedRoleSpan) {
-            this.selectedRoleSpan.textContent = role;
-        }
-    }
-
-    hideRoleContent() {
-        if (this.contentContainer) {
-            this.contentContainer.style.display = 'none';
-        }
+        addHoverEffect(document.querySelectorAll('.skill-badge'));
+        addHoverEffect(document.querySelectorAll('.company-badge'));
     }
 }
 
-// Initialize the manager when DOM is loaded
+// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new RoleContentManager();
 });
